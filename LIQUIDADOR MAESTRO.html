@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Liquidador Maestro Los Olivos & Candelaria</title>
+    <style>
+        /* Estilos base para la portada */
+        body { font-family: Arial, Helvetica, sans-serif; background: #f5f8fb; margin: 16px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        h1 { color: #12437a; text-align: center; margin-bottom: 30px; }
+        
+        /* Diseño de 2 columnas */
+        .selector-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+            max-width: 650px; 
+            margin: 0 auto;
+        }
+
+        .column-header {
+            font-weight: 700;
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 10px;
+            padding: 5px 0;
+            border-bottom: 2px solid;
+        }
+
+        .header-olivos { color: #008f39; border-color: #008f39; }
+        .header-candelaria { color: #ff0000; border-color: #ff0000; }
+
+        .btn-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-main {
+            color: #fff;
+            border: none;
+            padding: 15px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.1s;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Colores de Marca */
+        .btn-candelaria { background: #ff0000; }
+        .btn-candelaria:hover { background: #cc0000; transform: translateY(-1px); }
+        .btn-olivos { background: #008f39; }
+        .btn-olivos:hover { background: #006b2b; transform: translateY(-1px); }
+
+        .footer { text-align: center; margin-top: 40px; color: #6b7a8f; font-size: 0.85em; }
+
+        /* Contenedor principal para la carga de liquidadores */
+        #main-content { min-height: 500px; }
+
+        /* Estilos de los liquidadores (Se mantienen) */
+        .liquidador-cpp-candelaria { color: #ff0000; }
+        .liquidador-cpp-olivos { color: #008f39; }
+        .liquidador-pap-candelaria { color: #ff0000; }
+        .liquidador-pap-olivos { color: #008f39; }
+        .liquidador-uxs-candelaria { color: #ff0000; }
+        .liquidador-uxs-olivos { color: #008f39; }
+
+        .liquidador-cpp-candelaria h1, .liquidador-pap-candelaria h1, .liquidador-uxs-candelaria h1 { color: #ff0000; }
+        .liquidador-cpp-olivos h1, .liquidador-pap-olivos h1, .liquidador-uxs-olivos h1 { color: #008f39; }
+        .liquidador-cpp-candelaria .section-title, .liquidador-pap-candelaria .section-title, .liquidador-uxs-candelaria .section-title { color: #ff0000; }
+        .liquidador-cpp-olivos .section-title, .liquidador-pap-olivos .section-title, .liquidador-uxs-olivos .section-title { color: #008f39; }
+
+        .card{background:#fff;border-radius:8px;padding:18px;margin-bottom:18px;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+        label{display:block;margin:8px 0 4px;font-weight:600; color: inherit; }
+        select,input[type=number]{padding:8px;border:1px solid #cfd8e6;border-radius:6px;width:200px}
+        .row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+        .btn{background:#12437a;color:#fff;border:none;padding:9px 14px;border-radius:6px;cursor:pointer;margin-right:8px}
+        table{width:100%;border-collapse:collapse;margin-top:12px}
+        th,td{padding:8px;border:1px solid #e6eef8;text-align:left}
+        th{background:#f1f7ff}
+        .summary{background:#eef6ff;padding:10px;border-radius:6px;margin-top:12px}
+        .warning{color:#9b2a2a;font-weight:700}
+        .small{font-size:0.9em;color:#334}
+        .muted{color:#6b7a8f}
+        .right{text-align:right}
+        .btn-back {
+            background: #6b7a8f;
+            color: #fff;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .btn-back:hover { background: #5a6475; }
+        .liquidador-uxs-candelaria select, .liquidador-uxs-candelaria input[type=number],
+        .liquidador-uxs-olivos select, .liquidador-uxs-olivos input[type=number] {
+            width: 300px;
+        }
+
+        /* Responsividad para la portada */
+        @media (max-width: 680px) {
+            .selector-grid {
+                grid-template-columns: 1fr; 
+                max-width: 350px;
+            }
+            .btn-column { gap: 10px; }
+            .column-olivos { margin-bottom: 20px; } 
+        }
+    </style>
+    <script>
+        // Funciones Comunes Globales (Crucial para evitar conflictos de scope)
+        function $(id){ return document.getElementById(id) }
+        function formatMoney(n){ return new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(Math.round(n)); }
+    </script>
+</head>
+<body id="body-main">
+
+    <div id="main-content">
+        <div class="container">
+            <h1>Portal de Cotizaciones - Los Olivos & Candelaria</h1>
+            
+            <div class="selector-grid">
+                
+                <div class="column-olivos">
+                    <div class="column-header header-olivos">LOS OLIVOS</div>
+                    <div class="btn-column">
+                        <button class="btn-main btn-olivos" onclick="loadCPP_Olivos()">CPP Los Olivos</button>
+                        <button class="btn-main btn-olivos" onclick="loadPAP_Olivos()">PAP Los Olivos</button>
+                        <button class="btn-main btn-olivos" onclick="loadUXS_Olivos()">UXS Los Olivos</button>
+                    </div>
+                </div>
+
+                <div class="column-candelaria">
+                    <div class="column-header header-candelaria">CANDELARIA</div>
+                    <div class="btn-column">
+                        <button class="btn-main btn-candelaria" onclick="loadCPP_Candelaria()">CPP La Candelaria</button>
+                        <button class="btn-main btn-candelaria" onclick="loadPAP_Candelaria()">PAP La Candelaria</button>
+                        <button class="btn-main btn-candelaria" onclick="loadUXS_Candelaria()">UXS La Candelaria</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer">
+                Tu Asistente Comercial Integral | Tarifas 2024–2026
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para cargar la interfaz de selección (CORREGIDA)
+        function loadSelector() {
+            document.title = 'Liquidador Maestro Los Olivos & Candelaria';
+            document.getElementById('body-main').className = '';
+            // Se inyecta la estructura ORIGINAL de 2 columnas.
+            document.getElementById('main-content').innerHTML = `
+                <div class="container">
+                    <h1>Portal de Cotizaciones - Los Olivos & Candelaria</h1>
+                    
+                    <div class="selector-grid">
+                        
+                        <div class="column-olivos">
+                            <div class="column-header header-olivos">LOS OLIVOS</div>
+                            <div class="btn-column">
+                                <button class="btn-main btn-olivos" onclick="loadCPP_Olivos()">CPP Los Olivos</button>
+                                <button class="btn-main btn-olivos" onclick="loadPAP_Olivos()">PAP Los Olivos</button>
+                                <button class="btn-main btn-olivos" onclick="loadUXS_Olivos()">UXS Los Olivos</button>
+                            </div>
+                        </div>
+
+                        <div class="column-candelaria">
+                            <div class="column-header header-candelaria">CANDELARIA</div>
+                            <div class="btn-column">
+                                <button class="btn-main btn-candelaria" onclick="loadCPP_Candelaria()">CPP La Candelaria</button>
+                                <button class="btn-main btn-candelaria" onclick="loadPAP_Candelaria()">PAP La Candelaria</button>
+                                <button class="btn-main btn-candelaria" onclick="loadUXS_Candelaria()">UXS La Candelaria</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="footer">
+                        Tu Asistente Comercial Integral | Tarifas Octubre 2025 	
+                    </div>
+                </div>
+            `;
+        }
+
+
+        // Función para inyectar el contenido y el script del liquidador
+        function loadLiquidador(htmlContent, className, scriptContent, title) {
+            document.title = title;
+            document.getElementById('body-main').className = className;
+            // Primero, inyectar el HTML y el botón de regreso.
+            document.getElementById('main-content').innerHTML = `
+                <button class="btn-back" onclick="loadSelector()">← Volver a la Selección de Liquidadores</button>
+                <div id="liquidador-area">
+                ${htmlContent}
+                </div>
+            `;
+            // Luego, ejecutar el script para inicializar la UI después de que el HTML está en el DOM.
+            try {
+                // Envuelve el script en una función anónima para aislar el scope
+                (function() {
+                    eval(scriptContent);
+                })();
+            } catch (e) {
+                console.error("Error al ejecutar el script del liquidador:", e);
+                alert("Hubo un error al cargar la calculadora. Por favor, revisa la consola para más detalles.");
+            }
+        }
+
+        // Definición de utilidades comunes para ser accesibles por todos los scripts
+        function $(id){ return document.getElementById(id) }
+        function formatMoney(n){ return new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(Math.round(n)); }
+
+
+        // --- DEFINICIONES DE CONTENIDO Y SCRIPTS (Aislados) ---
+
+       // 1. CPP La Candelaria (FRAGMENTO CORREGIDO)
+const CPP_Candelaria_HTML = `
+    <h1>Liquidador CPP — Candelaria (Abril 2025 – Marzo 2026)</h1>
+    <div class="card">
+        <div class="small muted">Datos del plan</div>
+        <div class="row" style="margin-top:6px">
+            <div><label>Selecciona el Plan CPP</label><select id="planSelect"></select></div>
+            <div><label>Número de cuotas</label><select id="cuotasSelect"></select></div>
+            <div><label>Número de adultos mayores (&gt;70 años)</label><input id="numMayores" type="number" min="0" max="2" value="0" /></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="small muted">Asistencias opcionales (indica cantidad por asistencia)</div>
+        <div style="margin-top:8px">
+            <label>Bicicleta (cantidad)</label><input id="as_bici" type="number" min="0" max="10" value="0"/>
+            <label>Mascota (cantidad)</label><input id="as_mascota" type="number" min="0" max="3" value="0"/>
+            <label>Repatriación (cantidad)</label><input id="as_repat" type="number" min="0" max="10" value="0"/>
+            <label>Salud (cantidad)</label><input id="as_salud" type="number" min="0" max="10" value="0"/>
+            <label>Seguro (cantidad)</label><input id="as_seguro" type="number" min="0" max="1" value="0"/>
+        </div>
+    </div>
+    <div style="margin-bottom:12px">
+        <button class="btn" id="btnCalc">Calcular</button>
+        <button class="btn" id="btnCopy">Copiar resumen</button>
+        <button class="btn" id="btnReset">Nuevo cálculo</button>
+        <span id="warn" class="warning" style="margin-left:10px"></span>
+    </div>
+    <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Resultados del cálculo</div>
+        <table id="resultTable" aria-live="polite">
+            <thead><tr><th>Concepto</th><th class="right">Anual sin descuento</th><th class="right">Anual con descuento (1er año)</th><th class="right">Cuota (si aplica)</th></tr></thead>
+            <tbody id="resultBody"></tbody>
+            <tfoot id="resultFoot"></tfoot>
+        </table>
+        <div class="summary" id="textsArea">
+            <div id="textPlan"></div>
+            <div id="textMayores" style="margin-top:6px"></div>
+            <div id="textTotal" style="margin-top:6px"></div>
+        </div>
+    </div>
+`;
+const CPP_Candelaria_Script = `
+const data = (function(){
+    return {
+        plans: {
+            "1": { name:"CPP1", cupos:1, cuotasPermitidas:[1,2,4,6],
+                values: {
+                    "1": { annual_no_discount:163250, annual_with_discount:149646 },
+                    "2": { annual_no_discount:186100, annual_with_discount:170592 },
+                    "4": { annual_no_discount:186100, annual_with_discount:170592 },
+                    "6": { annual_no_discount:186100, annual_with_discount:170592 }
+                }
+            },
+            "2": { name:"CPP2", cupos:2, cuotasPermitidas:[1,2,4,6,8],
+                values: {
+                    "1": { annual_no_discount:293800, annual_with_discount:269317 },
+                    "2": { annual_no_discount:334900, annual_with_discount:306992 },
+                    "4": { annual_no_discount:334900, annual_with_discount:306992 },
+                    "6": { annual_no_discount:334900, annual_with_discount:306992 },
+                    "8": { annual_no_discount:334900, annual_with_discount:306992 }
+                }
+            },
+            "3": { name:"CPP3", cupos:3, cuotasPermitidas:[1,2,3,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:391800, annual_with_discount:359150 },
+                    "2": { annual_no_discount:446700, annual_with_discount:409475 },
+                    "3": { annual_no_discount:446700, annual_with_discount:409475 },
+                    "4": { annual_no_discount:446700, annual_with_discount:409475 },
+                    "6": { annual_no_discount:446700, annual_with_discount:409475 },
+                    "8": { annual_no_discount:446700, annual_with_discount:409475 },
+                    "10":{ annual_no_discount:446700, annual_with_discount:409475 }
+                }
+            },
+            "4": { name:"CPP4", cupos:4, cuotasPermitidas:[1,2,3,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:456800, annual_with_discount:418733 },
+                    "2": { annual_no_discount:520800, annual_with_discount:477400 },
+                    "3": { annual_no_discount:520800, annual_with_discount:477400 },
+                    "4": { annual_no_discount:520800, annual_with_discount:477400 },
+                    "6": { annual_no_discount:520800, annual_with_discount:477400 },
+                    "8": { annual_no_discount:520800, annual_with_discount:477400 },
+                    "10":{ annual_no_discount:520800, annual_with_discount:477400 }
+                }
+            },
+            "5": { name:"CPP5", cupos:5, cuotasPermitidas:[1,2,3,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:489500, annual_with_discount:448708 },
+                    "2": { annual_no_discount:558000, annual_with_discount:511500 },
+                    "3": { annual_no_discount:558000, annual_with_discount:511500 },
+                    "4": { annual_no_discount:558000, annual_with_discount:511500 },
+                    "6": { annual_no_discount:558000, annual_with_discount:511500 },
+                    "8": { annual_no_discount:558000, annual_with_discount:511500 },
+                    "10":{ annual_no_discount:558000, annual_with_discount:511500 }
+                }
+            },
+            "10": { name:"CPP10", cupos:10, cuotasPermitidas:[1,2,3,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:691000, annual_with_discount:633417 },
+                    "2": { annual_no_discount:787700, annual_with_discount:722059 },
+                    "3": { annual_no_discount:787700, annual_with_discount:722059 },
+                    "4": { annual_no_discount:787700, annual_with_discount:722059 },
+                    "6": { annual_no_discount:787700, annual_with_discount:722059 },
+                    "8": { annual_no_discount:787700, annual_with_discount:722059 },
+                    "10":{ annual_no_discount:787700, annual_with_discount:722059 }
+                }
+            }
+        },
+        mayores: {
+            "1": { annual_no_discount:217200, annual_with_discount:199100 },
+            "2": { annual_no_discount:250800, annual_with_discount:229900 },
+            "3": { annual_no_discount:250800, annual_with_discount:229900 },
+            "4": { annual_no_discount:250800, annual_with_discount:229900 },
+            "6": { annual_no_discount:250800, annual_with_discount:229900 },
+            "8": { annual_no_discount:250800, annual_with_discount:229900 },
+            "10":{ annual_no_discount:250800, annual_with_discount:229900 }
+        },
+        assists: {
+            bici: { label:"Bicicleta", values: {
+                "1": { annual_no_discount:18620, annual_with_discount:17068 },
+                "2": { annual_no_discount:21600, annual_with_discount:19800 },
+                "3": { annual_no_discount:21600, annual_with_discount:19800 },
+                "4": { annual_no_discount:21600, annual_with_discount:19800 },
+                "6": { annual_no_discount:21600, annual_with_discount:19800 },
+                "8": { annual_no_discount:21600, annual_with_discount:19800 },
+                "10":{ annual_no_discount:21600, annual_with_discount:19800 }
+            }},
+            mascota: { label:"Mascota", values: {
+                "1": { annual_no_discount:78000, annual_with_discount:71500 },
+                "2": { annual_no_discount:87000, annual_with_discount:79750 },
+                "3": { annual_no_discount:87000, annual_with_discount:79750 },
+                "4": { annual_no_discount:87000, annual_with_discount:79750 },
+                "6": { annual_no_discount:87000, annual_with_discount:79750 },
+                "8": { annual_no_discount:87000, annual_with_discount:79750 },
+                "10":{ annual_no_discount:87000, annual_with_discount:79750 }
+            }},
+            repatriacion: { label:"Repatriación", values: {
+                "1": { annual_no_discount:13600, annual_with_discount:12467 },
+                "2": { annual_no_discount:16200, annual_with_discount:14850 },
+                "3": { annual_no_discount:16200, annual_with_discount:14850 },
+                "4": { annual_no_discount:16200, annual_with_discount:14850 },
+                "6": { annual_no_discount:16200, annual_with_discount:14850 },
+                "8": { annual_no_discount:16200, annual_with_discount:14850 },
+                "10":{ annual_no_discount:16200, annual_with_discount:14850 }
+            }},
+            salud: { label:"Salud", values: {
+                "1": { annual_no_discount:23700, annual_with_discount:21725 },
+                "2": { annual_no_discount:27900, annual_with_discount:25575 },
+                "3": { annual_no_discount:27900, annual_with_discount:25575 },
+                "4": { annual_no_discount:27900, annual_with_discount:25575 },
+                "6": { annual_no_discount:27900, annual_with_discount:25575 },
+                "8": { annual_no_discount:27900, annual_with_discount:25575 },
+                "10":{ annual_no_discount:27900, annual_with_discount:25575 }
+            }},
+            // **NUEVO CAMPO DE SEGURO**
+            seguro: { label:"Seguro", values: {
+                "1": { annual_no_discount:23400, annual_with_discount:23400 },
+                "2": { annual_no_discount:23400, annual_with_discount:23400 },
+                "3": { annual_no_discount:23400, annual_with_discount:23400 },
+                "4": { annual_no_discount:23400, annual_with_discount:23400 },
+                "6": { annual_no_discount:23400, annual_with_discount:23400 },
+                "8": { annual_no_discount:23400, annual_with_discount:23400 },
+                "10":{ annual_no_discount:23400, annual_with_discount:23400 }
+            }}
+        }
+    };
+})();
+
+// El resto del script de CPP_Candelaria (rebuildCuotas, calculate, listeners)
+function rebuildCuotas(){
+    const plan = $('planSelect');
+    const cuotasSel = $('cuotasSelect');
+    if(!plan || !cuotasSel) return;
+    const planId = plan.value;
+    cuotasSel.innerHTML = '';
+    const allowed = data.plans[planId].cuotasPermitidas;
+    allowed.forEach(q=>{
+        const opt = document.createElement('option');
+        opt.value = q;
+        opt.text = q;
+        cuotasSel.appendChild(opt);
+    });
+}
+
+function calculate(){
+    const warn = $('warn'); warn.textContent='';
+    const planId = $('planSelect').value;
+    const cuotas = parseInt($('cuotasSelect').value,10);
+    const nMay = Math.max(0, Math.min(2, parseInt($('numMayores').value||0,10)));
+    const qty_bici = Math.max(0, parseInt($('as_bici').value||0,10));
+    const qty_masc = Math.max(0, parseInt($('as_mascota').value||0,10));
+    const qty_rep = Math.max(0, parseInt($('as_repat').value||0,10));
+    const qty_sal = Math.max(0, parseInt($('as_salud').value||0,10));
+    const qty_seg = Math.max(0, parseInt($('as_seguro').value||0,10)); // <--- LECTURA DE CANTIDAD
+
+    const plan = data.plans[planId];
+    if(!plan) { warn.textContent='Plan inválido'; return; }
+    if(!plan.cuotasPermitidas.includes(cuotas)){
+        warn.textContent = \`Cuotas no permitidas para \${plan.name}. Permite: \${plan.cuotasPermitidas.join(', ')}\`;
+        return;
+    }
+
+    const planVals = plan.values[String(cuotas)];
+    if(!planVals){ warn.textContent='No hay tarifa definida para esa combinación.'; return; }
+
+    const plan_anual_renov = planVals.annual_no_discount;
+    const plan_anual_primer = planVals.annual_with_discount;
+
+    const mayorVals = data.mayores[String(cuotas)] || data.mayores["2"];
+    const mayor_anual_renov = mayorVals.annual_no_discount;
+    const mayor_anual_primer = mayorVals.annual_with_discount;
+
+    function assistValue(type, qty){
+        if(qty<=0) return {anual_renov:0, anual_primer:0};
+        const vals = data.assists[type].values[String(cuotas)] || data.assists[type].values["1"];
+        const anual_renov = vals.annual_no_discount * qty;
+        const anual_primer = vals.annual_with_discount * qty;
+        return {anual_renov,anual_primer};
+    }
+
+    const as_b = assistValue('bici', qty_bici);
+    const as_m = assistValue('mascota', qty_masc);
+    const as_r = assistValue('repatriacion', qty_rep);
+    const as_s = assistValue('salud', qty_sal);
+    const as_se = assistValue('seguro', qty_seg); // <--- CÁLCULO DE COSTO
+
+    let final_plan_cost_renov = 0;
+    let final_plan_cost_primer = 0;
+    let table_plan_row_renov = plan_anual_renov;
+    let table_plan_row_primer = plan_anual_primer;
+    let detalleAdultosRenov = 0;
+    let detalleAdultos = 0;
+
+    if(nMay > 0 && planId==="10"){
+        detalleAdultosRenov = mayor_anual_renov * nMay;
+        detalleAdultos = mayor_anual_primer * nMay;
+        final_plan_cost_renov = plan_anual_renov + detalleAdultosRenov;
+        final_plan_cost_primer = plan_anual_primer + detalleAdultos;
+        table_plan_row_renov = plan_anual_renov;
+        table_plan_row_primer = plan_anual_primer;
+    } else if (nMay > 0 && ['2','3','4','5'].includes(planId)) {
+        const baseCupos = plan.cupos;
+        const per_person_renov = plan_anual_renov / baseCupos;
+        const per_person_primer = plan_anual_primer / baseCupos;
+        const ocupadosPorMenores = Math.max(0, baseCupos - nMay);
+        
+        final_plan_cost_renov = per_person_renov * ocupadosPorMenores + mayor_anual_renov * nMay;
+        final_plan_cost_primer = per_person_primer * ocupadosPorMenores + mayor_anual_primer * nMay;
+        table_plan_row_renov = final_plan_cost_renov;
+        table_plan_row_primer = final_plan_cost_primer;
+        
+        detalleAdultosRenov = mayor_anual_renov * nMay; 
+        detalleAdultos = mayor_anual_primer * nMay;
+    } else {
+        final_plan_cost_renov = plan_anual_renov;
+        final_plan_cost_primer = plan_anual_primer;
+        table_plan_row_renov = plan_anual_renov;
+        table_plan_row_primer = plan_anual_primer;
+    }
+
+    // <--- SUMA DE ASISTENCIAS CORREGIDA para incluir SEGURO --->
+    const assists_renov_total = as_b.anual_renov + as_m.anual_renov + as_r.anual_renov + as_s.anual_renov + as_se.anual_renov;
+    const assists_primer_total = as_b.anual_primer + as_m.anual_primer + as_r.anual_primer + as_s.anual_primer + as_se.anual_primer;
+
+    const total_renov = final_plan_cost_renov + assists_renov_total;
+    const total_primer = final_plan_cost_primer + assists_primer_total;
+
+    const cuota_primer = total_primer / (cuotas>0?cuotas:1);
+
+    const tbody = $('resultBody'); tbody.innerHTML='';
+    function addRow(label, valRenov, valPrimer, cuota){
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td'); td1.textContent = label;
+        const td2 = document.createElement('td'); td2.className='right'; td2.textContent = formatMoney(valRenov);
+        const td3 = document.createElement('td'); td3.className='right'; td3.textContent = formatMoney(valPrimer);
+        const td4 = document.createElement('td'); td4.className='right'; td4.textContent = cuota!==undefined?formatMoney(cuota):'-';
+        tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4);
+        tbody.appendChild(tr);
+    }
+
+    const planLabel = (planId==="10" && nMay>0) ? \`\${data.plans[planId].name} (Plan Base 10 cupos)\` : \`\${data.plans[planId].name} (Plan Ajustado)\`;
+    addRow(planLabel, table_plan_row_renov, table_plan_row_primer, table_plan_row_primer / (cuotas>0?cuotas:1));
+
+    if(nMay>0){
+        const detalleCuota = detalleAdultos / (cuotas>0?cuotas:1);
+        addRow(\`Adicional/Adultos mayores (\${nMay})\`, detalleAdultosRenov, detalleAdultos, detalleCuota);
+    }
+
+    if(qty_bici>0) addRow(\`\${data.assists.bici.label} x \${qty_bici}\`, as_b.anual_renov, as_b.anual_primer, as_b.anual_primer/(cuotas>0?cuotas:1));
+    if(qty_masc>0) addRow(\`\${data.assists.mascota.label} x \${qty_masc}\`, as_m.anual_renov, as_m.anual_primer, as_m.anual_primer/(cuotas>0?cuotas:1));
+    if(qty_rep>0) addRow(\`\${data.assists.repatriacion.label} x \${qty_rep}\`, as_r.anual_renov, as_r.anual_primer, as_r.anual_primer/(cuotas>0?cuotas:1));
+    if(qty_sal>0) addRow(\`\${data.assists.salud.label} x \${qty_sal}\`, as_s.anual_renov, as_s.anual_primer, as_s.anual_primer/(cuotas>0?cuotas:1));
+    if(qty_seg>0) addRow(\`\${data.assists.seguro.label} x \${qty_seg}\`, as_se.anual_renov, as_se.anual_primer, as_se.anual_primer/(cuotas>0?cuotas:1)); // <--- FILA EN LA TABLA
+
+    const foot = $('resultFoot'); foot.innerHTML = '';
+    const trT = document.createElement('tr');
+    trT.innerHTML = \`<th>Total</th><th class="right">\${formatMoney(total_renov)}</th><th class="right">\${formatMoney(total_primer)}</th><th class="right">\${formatMoney(cuota_primer)}</th>\`;
+    foot.appendChild(trT);
+
+    $('textPlan').textContent = \`Cliente, el plan \${data.plans[planId].name} en \${cuotas} cuota(s) tiene un valor total anual de \${formatMoney(total_renov)}, y el primer año con descuento será de \${formatMoney(total_primer)}. Carencia 60 días.\`;
+    if(nMay>0){
+        $('textMayores').textContent = \`Recuerde que tiene \${nMay} adicional(es) de adulto mayor con un valor anual total de \${formatMoney(detalleAdultosRenov)} (renovación) y \${formatMoney(detalleAdultos)} (primer año).\`;
+    } else {
+        $('textMayores').textContent = '';
+    }
+    $('textTotal').textContent = \`El total a pagar mensualmente, incluyendo las asistencias (si las hay), será de \${formatMoney(cuota_primer)} por cuota (\${cuotas} cuotas).\`;
+
+    window._lastSummary = {
+        plan: data.plans[planId].name,
+        cuotas,
+        total_renov, total_primer, cuota_primer,
+        detalleAdultosRenov, detalleAdultos,
+        assists:{bici:qty_bici,mascota:qty_masc,repat:qty_rep,salud:qty_sal,seguro:qty_seg} // <--- SEGURO EN RESUMEN
+    };
+}
+
+function initUI(){
+    const planSel = $('planSelect');
+    if (!planSel) return;
+    for(const key of Object.keys(data.plans)){
+        const p = data.plans[key];
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.text = \`\${p.name} (\${p.cupos} cupo\${p.cupos>1?'s':''})\`;
+        planSel.appendChild(opt);
+    }
+    planSel.addEventListener('change', rebuildCuotas);
+    rebuildCuotas();
+    $('btnCalc').addEventListener('click', calculate);
+    $('btnReset').addEventListener('click', ()=>{
+        $('planSelect').value='5'; rebuildCuotas();
+        $('cuotasSelect').value='10';
+        $('numMayores').value='0';
+        $('as_bici').value='0'; $('as_mascota').value='0'; $('as_repat').value='0'; $('as_salud').value='0'; $('as_seguro').value='0';
+        $('resultBody').innerHTML=''; $('resultFoot').innerHTML=''; $('textPlan').textContent=''; $('textMayores').textContent=''; $('textTotal').textContent='';
+        $('warn').textContent='';
+    });
+    $('btnCopy').addEventListener('click', ()=>{
+        const s = window._lastSummary;
+        if(!s){ alert('No hay resumen para copiar. Haz un cálculo primero.'); return; }
+        let txt = \`Resumen cotización:\\nPlan: \${s.plan}\\nCuotas: \${s.cuotas}\\nTotal anual (renovación): \${formatMoney(s.total_renov)}\\nTotal anual (primer año con descuento): \${formatMoney(s.total_primer)}\\nCuota por mes (primer año): \${formatMoney(s.cuota_primer)}\\n\`;
+        if(s.detalleAdultos>0) txt += \`Adicional adultos (primer año): \${formatMoney(s.detalleAdultos)}\\n\`;
+        const a = s.assists; txt += \`Asistencias: bici x\${a.bici}, mascota x\${a.mascota}, repat x\${a.repat}, salud x\${a.salud}, seguro x\${a.seguro}\n\`; // <--- RESUMEN EN EL COPIAR
+        navigator.clipboard && navigator.clipboard.writeText(txt).then(()=> alert('Resumen copiado'));
+    });
+    calculate();
+}
+initUI();
+`;
+function loadCPP_Candelaria() {
+    loadLiquidador(CPP_Candelaria_HTML, 'liquidador-cpp-candelaria', CPP_Candelaria_Script, 'Liquidador CPP — Candelaria');
+}
+
+        // 2. CPP Los Olivos
+const CPP_Olivos_HTML = `
+    <h1>Liquidador CPP — Los Olivos (Abril 2025 – Marzo 2026)</h1>
+    <div class="card">
+        <div class="small muted">Datos del plan</div>
+        <div class="row" style="margin-top:6px">
+            <div><label>Selecciona el Plan CPP</label><select id="planSelect"></select></div>
+            <div><label>Número de cuotas</label><select id="cuotasSelect"></select></div>
+            <div><label>Número de adultos mayores (&gt;70 años)</label><input id="numMayores" type="number" min="0" max="2" value="0" /></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="small muted">Asistencias opcionales (indica cantidad por asistencia)</div>
+        <div style="margin-top:8px">
+            <label>Bicicleta (cantidad)</label><input id="as_bici" type="number" min="0" max="10" value="0"/>
+            <label>Mascota (cantidad)</label><input id="as_mascota" type="number" min="0" max="3" value="0"/>
+            <label>Repatriación (cantidad)</label><input id="as_repat" type="number" min="0" max="10" value="0"/>
+            <label>Salud (cantidad)</label><input id="as_salud" type="number" min="0" max="10" value="0"/>
+            <label>Seguro (cantidad)</label><input id="as_seguro" type="number" min="0" max="1" value="0"/>
+        </div>
+    </div>
+    <div style="margin-bottom:12px">
+        <button class="btn" id="btnCalc">Calcular</button>
+        <button class="btn" id="btnCopy">Copiar resumen</button>
+        <button class="btn" id="btnReset">Nuevo cálculo</button>
+        <span id="warn" class="warning" style="margin-left:10px"></span>
+    </div>
+    <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Resultados del cálculo</div>
+        <table id="resultTable" aria-live="polite">
+            <thead><tr><th>Concepto</th><th class="right">Anual sin descuento</th><th class="right">Anual con descuento (1er año)</th><th class="right">Cuota (si aplica)</th></tr></thead>
+            <tbody id="resultBody"></tbody>
+            <tfoot id="resultFoot"></tfoot>
+        </table>
+        <div class="summary" id="textsArea">
+            <div id="textPlan"></div>
+            <div id="textMayores" style="margin-top:6px"></div>
+            <div id="textTotal" style="margin-top:6px"></div>
+        </div>
+    </div>
+`;
+const CPP_Olivos_Script = `
+const data = (function(){
+    return {
+        plans: {
+            "1": { name:"CPP1", cupos:1, cuotasPermitidas:[1,2,4,6],
+                values: {
+                    "1": { annual_no_discount:73850, annual_with_discount:67696 },
+                    "2": { annual_no_discount:84200, annual_with_discount:77183 },
+                    "4": { annual_no_discount:84200, annual_with_discount:77183 },
+                    "6": { annual_no_discount:84200, annual_with_discount:77183 }
+                }
+            },
+            "2": { name:"CPP2", cupos:2, cuotasPermitidas:[1,2,4,6,8],
+                values: {
+                    "1": { annual_no_discount:133000, annual_with_discount:121917 },
+                    "2": { annual_no_discount:151600, annual_with_discount:138967 },
+                    "4": { annual_no_discount:151600, annual_with_discount:138967 },
+                    "6": { annual_no_discount:151600, annual_with_discount:138967 },
+                    "8": { annual_no_discount:151600, annual_with_discount:138967 }
+                }
+            },
+            "3": { name:"CPP3", cupos:3, cuotasPermitidas:[1,2,3,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:177000, annual_with_discount:162250 },
+                    "2": { annual_no_discount:201800, annual_with_discount:184983 },
+                    "3": { annual_no_discount:201800, annual_with_discount:184983 },
+                    "4": { annual_no_discount:201800, annual_with_discount:184983 },
+                    "6": { annual_no_discount:201800, annual_with_discount:184983 },
+                    "8": { annual_no_discount:201800, annual_with_discount:184983 },
+                    "10":{ annual_no_discount:201800, annual_with_discount:184983 }
+                }
+            },
+            "4": { name:"CPP4", cupos:4, cuotasPermitidas:[1,2,3,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:206800, annual_with_discount:189567 },
+                    "2": { annual_no_discount:235800, annual_with_discount:216150 },
+                    "3": { annual_no_discount:235800, annual_with_discount:216150 },
+                    "4": { annual_no_discount:235800, annual_with_discount:216150 },
+                    "6": { annual_no_discount:235800, annual_with_discount:216150 },
+                    "8": { annual_no_discount:235800, annual_with_discount:216150 },
+                    "10":{ annual_no_discount:235800, annual_with_discount:216150 }
+                }
+            },
+            "5": { name:"CPP5", cupos:5, cuotasPermitidas:[1,2,3,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:221500, annual_with_discount:203042 },
+                    "2": { annual_no_discount:252500, annual_with_discount:231458 },
+                    "3": { annual_no_discount:252500, annual_with_discount:231458 },
+                    "4": { annual_no_discount:252500, annual_with_discount:231458 },
+                    "6": { annual_no_discount:252500, annual_with_discount:231458 },
+                    "8": { annual_no_discount:252500, annual_with_discount:231458 },
+                    "10":{ annual_no_discount:252500, annual_with_discount:231458 }
+                }
+            },
+            "10": { name:"CPP10", cupos:10, cuotasPermitidas:[1,2,3,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:312600, annual_with_discount:286550 },
+                    "2": { annual_no_discount:356400, annual_with_discount:326700 },
+                    "3": { annual_no_discount:356400, annual_with_discount:326700 },
+                    "4": { annual_no_discount:356400, annual_with_discount:326700 },
+                    "6": { annual_no_discount:356400, annual_with_discount:326700 },
+                    "8": { annual_no_discount:356400, annual_with_discount:326700 },
+                    "10":{ annual_no_discount:356400, annual_with_discount:326700 }
+                }
+            }
+        },
+        mayores: {
+            "1": { annual_no_discount:163200, annual_with_discount:149600 },
+            "2": { annual_no_discount:188840, annual_with_discount:173103 },
+            "3": { annual_no_discount:188840, annual_with_discount:173103 },
+            "4": { annual_no_discount:188840, annual_with_discount:173103 },
+            "6": { annual_no_discount:188840, annual_with_discount:173103 },
+            "8": { annual_no_discount:188840, annual_with_discount:173103 },
+            "10":{ annual_no_discount:188840, annual_with_discount:173103 }
+        },
+        assists: {
+            bici: { label:"Bicicleta", values: {
+                "1": { annual_no_discount:18620, annual_with_discount:17068 },
+                "2": { annual_no_discount:21600, annual_with_discount:19800 },
+                "3": { annual_no_discount:21600, annual_with_discount:19800 },
+                "4": { annual_no_discount:21600, annual_with_discount:19800 },
+                "6": { annual_no_discount:21600, annual_with_discount:19800 },
+                "8": { annual_no_discount:21600, annual_with_discount:19800 },
+                "10":{ annual_no_discount:21600, annual_with_discount:19800 }
+            }},
+            mascota: { label:"Mascota", values: {
+                "1": { annual_no_discount:78000, annual_with_discount:71500 },
+                "2": { annual_no_discount:87000, annual_with_discount:79750 },
+                "3": { annual_no_discount:87000, annual_with_discount:79750 },
+                "4": { annual_no_discount:87000, annual_with_discount:79750 },
+                "6": { annual_no_discount:87000, annual_with_discount:79750 },
+                "8": { annual_no_discount:87000, annual_with_discount:79750 },
+                "10":{ annual_no_discount:87000, annual_with_discount:79750 }
+            }},
+            repatriacion: { label:"Repatriación", values: {
+                "1": { annual_no_discount:13600, annual_with_discount:12467 },
+                "2": { annual_no_discount:16200, annual_with_discount:14850 },
+                "3": { annual_no_discount:16200, annual_with_discount:14850 },
+                "4": { annual_no_discount:16200, annual_with_discount:14850 },
+                "6": { annual_no_discount:16200, annual_with_discount:14850 },
+                "8": { annual_no_discount:16200, annual_with_discount:14850 },
+                "10":{ annual_no_discount:16200, annual_with_discount:14850 }
+            }},
+            salud: { label:"Salud", values: {
+                "1": { annual_no_discount:23700, annual_with_discount:21725 },
+                "2": { annual_no_discount:27900, annual_with_discount:25575 },
+                "3": { annual_no_discount:27900, annual_with_discount:25575 },
+                "4": { annual_no_discount:27900, annual_with_discount:25575 },
+                "6": { annual_no_discount:27900, annual_with_discount:25575 },
+                "8": { annual_no_discount:27900, annual_with_discount:25575 },
+                "10":{ annual_no_discount:27900, annual_with_discount:25575 }
+            }},
+            // **NUEVO CAMPO: SEGURO**
+            seguro: { label:"Seguro", values: {
+                "1": { annual_no_discount:23400, annual_with_discount:23400 },
+                "2": { annual_no_discount:23400, annual_with_discount:23400 },
+                "3": { annual_no_discount:23400, annual_with_discount:23400 },
+                "4": { annual_no_discount:23400, annual_with_discount:23400 },
+                "6": { annual_no_discount:23400, annual_with_discount:23400 },
+                "8": { annual_no_discount:23400, annual_with_discount:23400 },
+                "10":{ annual_no_discount:23400, annual_with_discount:23400 }
+            }}
+        }
+    };
+})();
+
+// El resto del script de CPP_Olivos (rebuildCuotas, calculate, listeners)
+function rebuildCuotas(){
+    const plan = $('planSelect');
+    const cuotasSel = $('cuotasSelect');
+    if(!plan || !cuotasSel) return;
+    const planId = plan.value;
+    cuotasSel.innerHTML = '';
+    const allowed = data.plans[planId].cuotasPermitidas;
+    allowed.forEach(q=>{
+        const opt = document.createElement('option');
+        opt.value = q;
+        opt.text = q;
+        cuotasSel.appendChild(opt);
+    });
+}
+
+function calculate(){
+    const warn = $('warn'); warn.textContent='';
+    const planId = $('planSelect').value;
+    const cuotas = parseInt($('cuotasSelect').value,10);
+    const nMay = Math.max(0, Math.min(2, parseInt($('numMayores').value||0,10)));
+    const qty_bici = Math.max(0, parseInt($('as_bici').value||0,10));
+    const qty_masc = Math.max(0, parseInt($('as_mascota').value||0,10));
+    const qty_rep = Math.max(0, parseInt($('as_repat').value||0,10));
+    const qty_sal = Math.max(0, parseInt($('as_salud').value||0,10));
+    const qty_seg = Math.max(0, Math.min(1, parseInt($('as_seguro').value||0,10))); // <--- LECTURA DE CANTIDAD (Max 1)
+
+    const plan = data.plans[planId];
+    if(!plan) { warn.textContent='Plan inválido'; return; }
+    if(!plan.cuotasPermitidas.includes(cuotas)){
+        warn.textContent = \`Cuotas no permitidas para \${plan.name}. Permite: \${plan.cuotasPermitidas.join(', ')}\`;
+        return;
+    }
+
+    const planVals = plan.values[String(cuotas)];
+    if(!planVals){ warn.textContent='No hay tarifa definida para esa combinación.'; return; }
+
+    const plan_anual_renov = planVals.annual_no_discount;
+    const plan_anual_primer = planVals.annual_with_discount;
+
+    const mayorVals = data.mayores[String(cuotas)] || data.mayores["2"];
+    const mayor_anual_renov = mayorVals.annual_no_discount;
+    const mayor_anual_primer = mayorVals.annual_with_discount;
+
+    function assistValue(type, qty){
+        if(qty<=0) return {anual_renov:0, anual_primer:0};
+        // Usar la clave 'seguro' si aplica
+        const key = type === 'seguro' ? 'seguro' : type; 
+        const vals = data.assists[key].values[String(cuotas)] || data.assists[key].values["1"];
+        const anual_renov = vals.annual_no_discount * qty;
+        const anual_primer = vals.annual_with_discount * qty;
+        return {anual_renov,anual_primer};
+    }
+
+    const as_b = assistValue('bici', qty_bici);
+    const as_m = assistValue('mascota', qty_masc);
+    const as_r = assistValue('repatriacion', qty_rep);
+    const as_s = assistValue('salud', qty_sal);
+    const as_se = assistValue('seguro', qty_seg); // <--- CÁLCULO DE COSTO
+
+    let final_plan_cost_renov = 0;
+    let final_plan_cost_primer = 0;
+    let table_plan_row_renov = plan_anual_renov;
+    let table_plan_row_primer = plan_anual_primer;
+    let detalleAdultosRenov = 0;
+    let detalleAdultos = 0;
+
+    if(nMay > 0 && planId==="10"){
+        detalleAdultosRenov = mayor_anual_renov * nMay;
+        detalleAdultos = mayor_anual_primer * nMay;
+        final_plan_cost_renov = plan_anual_renov + detalleAdultosRenov;
+        final_plan_cost_primer = plan_anual_primer + detalleAdultos;
+        table_plan_row_renov = plan_anual_renov;
+        table_plan_row_primer = plan_anual_primer;
+    } else if (nMay > 0 && ['2','3','4','5'].includes(planId)) {
+        const baseCupos = plan.cupos;
+        const per_person_renov = plan_anual_renov / baseCupos;
+        const per_person_primer = plan_anual_primer / baseCupos;
+        const ocupadosPorMenores = Math.max(0, baseCupos - nMay);
+        
+        final_plan_cost_renov = per_person_renov * ocupadosPorMenores + mayor_anual_renov * nMay;
+        final_plan_cost_primer = per_person_primer * ocupadosPorMenores + mayor_anual_primer * nMay;
+        table_plan_row_renov = final_plan_cost_renov;
+        table_plan_row_primer = final_plan_cost_primer;
+        
+        detalleAdultosRenov = mayor_anual_renov * nMay; 
+        detalleAdultos = mayor_anual_primer * nMay;
+    } else {
+        final_plan_cost_renov = plan_anual_renov;
+        final_plan_cost_primer = plan_anual_primer;
+        table_plan_row_renov = plan_anual_renov;
+        table_plan_row_primer = plan_anual_primer;
+    }
+
+    // <--- SUMA DE ASISTENCIAS CORREGIDA para incluir SEGURO --->
+    const assists_renov_total = as_b.anual_renov + as_m.anual_renov + as_r.anual_renov + as_s.anual_renov + as_se.anual_renov;
+    const assists_primer_total = as_b.anual_primer + as_m.anual_primer + as_r.anual_primer + as_s.anual_primer + as_se.anual_primer;
+    
+    const total_renov = final_plan_cost_renov + assists_renov_total;
+    const total_primer = final_plan_cost_primer + assists_primer_total;
+
+    const cuota_primer = total_primer / (cuotas>0?cuotas:1);
+
+    const tbody = $('resultBody'); tbody.innerHTML='';
+    function addRow(label, valRenov, valPrimer, cuota){
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td'); td1.textContent = label;
+        const td2 = document.createElement('td'); td2.className='right'; td2.textContent = formatMoney(valRenov);
+        const td3 = document.createElement('td'); td3.className='right'; td3.textContent = formatMoney(valPrimer);
+        const td4 = document.createElement('td'); td4.className='right'; td4.textContent = cuota!==undefined?formatMoney(cuota):'-';
+        tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4);
+        tbody.appendChild(tr);
+    }
+
+    const planLabel = (planId==="10" && nMay>0) ? \`\${data.plans[planId].name} (Plan Base 10 cupos)\` : \`\${data.plans[planId].name} (Plan Ajustado)\`;
+    addRow(planLabel, table_plan_row_renov, table_plan_row_primer, table_plan_row_primer / (cuotas>0?cuotas:1));
+
+    if(nMay>0){
+        const detalleCuota = detalleAdultos / (cuotas>0?cuotas:1);
+        addRow(\`Adicional/Adultos mayores (\${nMay})\`, detalleAdultosRenov, detalleAdultos, detalleCuota);
+    }
+
+    if(qty_bici>0) addRow(\`\${data.assists.bici.label} x \${qty_bici}\`, as_b.anual_renov, as_b.anual_primer, as_b.anual_primer/(cuotas>0?cuotas:1));
+    if(qty_masc>0) addRow(\`\${data.assists.mascota.label} x \${qty_masc}\`, as_m.anual_renov, as_m.anual_primer, as_m.anual_primer/(cuotas>0?cuotas:1));
+    if(qty_rep>0) addRow(\`\${data.assists.repatriacion.label} x \${qty_rep}\`, as_r.anual_renov, as_r.anual_primer, as_r.anual_primer/(cuotas>0?cuotas:1));
+    if(qty_sal>0) addRow(\`\${data.assists.salud.label} x \${qty_sal}\`, as_s.anual_renov, as_s.anual_primer, as_s.anual_primer/(cuotas>0?cuotas:1));
+    if(qty_seg>0) addRow(\`\${data.assists.seguro.label} x \${qty_seg}\`, as_se.anual_renov, as_se.anual_primer, as_se.anual_primer/(cuotas>0?cuotas:1)); // <--- FILA DEL SEGURO
+
+    const foot = $('resultFoot'); foot.innerHTML = '';
+    const trT = document.createElement('tr');
+    trT.innerHTML = \`<th>Total</th><th class="right">\${formatMoney(total_renov)}</th><th class="right">\${formatMoney(total_primer)}</th><th class="right">\${formatMoney(cuota_primer)}</th>\`;
+    foot.appendChild(trT);
+
+    $('textPlan').textContent = \`Cliente, el plan \${data.plans[planId].name} en \${cuotas} cuota(s) tiene un valor total anual de \${formatMoney(total_renov)}, y el primer año con descuento será de \${formatMoney(total_primer)}. Carencia 60 días.\`;
+    if(nMay>0){
+        $('textMayores').textContent = \`Recuerde que tiene \${nMay} adicional(es) de adulto mayor con un valor anual total de \${formatMoney(detalleAdultosRenov)} (renovación) y \${formatMoney(detalleAdultos)} (primer año).\`;
+    } else {
+        $('textMayores').textContent = '';
+    }
+    $('textTotal').textContent = \`El total a pagar mensualmente, incluyendo las asistencias (si las hay), será de \${formatMoney(cuota_primer)} por cuota (\${cuotas} cuotas).\`;
+
+    window._lastSummary = {
+        plan: data.plans[planId].name,
+        cuotas,
+        total_renov, total_primer, cuota_primer,
+        detalleAdultosRenov, detalleAdultos,
+        assists:{bici:qty_bici,mascota:qty_masc,repat:qty_rep,salud:qty_sal,seguro:qty_seg} // <--- SEGURO EN EL RESUMEN PARA COPIAR
+    };
+}
+
+function initUI(){
+    const planSel = $('planSelect');
+    if (!planSel) return;
+    for(const key of Object.keys(data.plans)){
+        const p = data.plans[key];
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.text = \`\${p.name} (\${p.cupos} cupo\${p.cupos>1?'s':''})\`;
+        planSel.appendChild(opt);
+    }
+    planSel.addEventListener('change', rebuildCuotas);
+    rebuildCuotas();
+
+    $('btnCalc').addEventListener('click', calculate);
+    $('btnReset').addEventListener('click', ()=>{
+        $('planSelect').value='5'; rebuildCuotas();
+        $('cuotasSelect').value='10';
+        $('numMayores').value='0';
+        $('as_bici').value='0'; $('as_mascota').value='0'; $('as_repat').value='0'; $('as_salud').value='0'; $('as_seguro').value='0'; // <-- RESET
+        $('resultBody').innerHTML=''; $('resultFoot').innerHTML=''; $('textPlan').textContent=''; $('textMayores').textContent=''; $('textTotal').textContent='';
+        $('warn').textContent='';
+    });
+    $('btnCopy').addEventListener('click', ()=>{
+        const s = window._lastSummary;
+        if(!s){ alert('No hay resumen para copiar. Haz un cálculo primero.'); return; }
+        let txt = \`Resumen cotización:\\nPlan: \${s.plan}\\nCuotas: \${s.cuotas}\\nTotal anual (renovación): \${formatMoney(s.total_renov)}\\nTotal anual (primer año con descuento): \${formatMoney(s.total_primer)}\\nCuota por mes (primer año): \${formatMoney(s.cuota_primer)}\\n\`;
+        if(s.detalleAdultos>0) txt += \`Adicional adultos (primer año): \${formatMoney(s.detalleAdultos)}\\n\`;
+        const a = s.assists; txt += \`Asistencias: bici x\${a.bici}, mascota x\${a.mascota}, repat x\${a.repat}, salud x\${a.salud}, seguro x\${a.seguro}\\n\`; // <-- COPIAR SEGURO
+        navigator.clipboard && navigator.clipboard.writeText(txt).then(()=> alert('Resumen copiado'));
+    });
+    calculate(); // Ejecutar cálculo inicial para mostrar datos por defecto
+}
+initUI();
+`;
+function loadCPP_Olivos() {
+    loadLiquidador(CPP_Olivos_HTML, 'liquidador-cpp-olivos', CPP_Olivos_Script, 'Liquidador CPP — Los Olivos');
+}
+       // 3. PAP La Candelaria
+const PAP_Candelaria_HTML = `
+    <h1>Liquidador PAP — La Candelaria (Planes y Asistencias)</h1>
+    <div class="card">
+        <div class="small muted">Datos base del plan</div>
+        <div class="row" style="margin-top:6px; margin-bottom: 15px;">
+            <div><label>Selecciona el Plan PAP</label><select id="planSelect"></select></div>
+            <div><label>Número de cuotas</label><select id="cuotasSelect"></select></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="small muted">Asistencias opcionales (indica cantidad por asistencia)</div>
+        <div class="row" style="margin-top:8px">
+            <div class="input-group"><label>Bicicleta (cant.)</label><input id="as_bici" type="number" min="0" max="10" value="0"/></div>
+            <div class="input-group"><label>Mascota (cant.)</label><input id="as_mascota" type="number" min="0" max="3" value="0"/></div>
+            <div class="input-group"><label>Repatriación (cant.)</label><input id="as_repat" type="number" min="0" max="10" value="0"/></div>
+            <div class="input-group"><label>Salud (cant.)</label><input id="as_salud" type="number" min="0" max="10" value="0"/></div>
+            <div class="input-group"><label>Seguro (cant.)</label><input id="as_seguro" type="number" min="0" max="1" value="0"/></div>
+        </div>
+    </div>
+    <div style="margin-bottom:12px">
+        <button class="btn" id="btnCalc">Calcular</button>
+        <button class="btn" id="btnCopy">Copiar resumen</button>
+        <button class="btn" id="btnReset">Nuevo cálculo</button>
+        <span id="warn" class="warning" style="margin-left:10px"></span>
+    </div>
+    <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Resultados del cálculo (Tarifa de Renovación)</div>
+        <table id="resultTable" aria-live="polite">
+            <thead><tr><th>Concepto</th><th class="right">Anual (Renovación)</th><th class="right">Cuota</th></tr></thead>
+            <tbody id="resultBody"></tbody>
+            <tfoot id="resultFoot"></tfoot>
+        </table>
+        <div class="summary" id="textsArea">
+            <div id="textPlan"></div>
+            <div id="textAsistencias" style="margin-top:6px"></div>
+            <div id="textTotal" style="margin-top:6px"></div>
+        </div>
+    </div>
+`;
+const PAP_Candelaria_Script = `
+const data = (function(){
+    return {
+        plans: {
+            "1": { name:"UNO CANDELARIA", cupos:1, cuotasPermitidas:[1,2],
+                values: {
+                    "1": { annual_no_discount:163250 },
+                    "2": { annual_no_discount:197600 },
+                }
+            },
+            "2": { name:"UNIDOS CANDELARIA", cuotasPermitidas:[1,2,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:510400 },
+                    "2": { annual_no_discount:628200 },
+                    "4": { annual_no_discount:628200 },
+                    "6": { annual_no_discount:628200 },
+                    "8": { annual_no_discount:628200 },
+                    "10":{ annual_no_discount:628200 }
+                }
+            },
+        },
+        mayores: {
+            "1": { annual_no_discount:163200, annual_with_discount:149600 },
+            "2": { annual_no_discount:188840, annual_with_discount:173103 },
+            "10":{ annual_no_discount:188840, annual_with_discount:173103 }
+        },
+        adicionales: {
+            adulto: { label:"Adulto (18-69)", values: { "1": { annual_no_discount:73850 } }},
+            menor: { label:"Menor (<18)", values: { "1": { annual_no_discount:51950 } }}
+        },
+        assists: {
+            bici: { label:"Bicicleta", values: {
+                "1": { annual_no_discount:18620, annual_with_discount:17068 },
+                "2": { annual_no_discount:21600, annual_with_discount:19800 },
+                "3": { annual_no_discount:21600, annual_with_discount:19800 },
+                "4": { annual_no_discount:21600, annual_with_discount:19800 },
+                "6": { annual_no_discount:21600, annual_with_discount:19800 },
+                "8": { annual_no_discount:21600, annual_with_discount:19800 },
+                "10":{ annual_no_discount:21600, annual_with_discount:19800 }
+            }},
+            mascota: { label:"Mascota", values: {
+                "1": { annual_no_discount:78000, annual_with_discount:71500 },
+                "2": { annual_no_discount:87000, annual_with_discount:79750 },
+                "3": { annual_no_discount:87000, annual_with_discount:79750 },
+                "4": { annual_no_discount:87000, annual_with_discount:79750 },
+                "6": { annual_no_discount:87000, annual_with_discount:79750 },
+                "8": { annual_no_discount:87000, annual_with_discount:79750 },
+                "10":{ annual_no_discount:87000, annual_with_discount:79750 }
+            }},
+            repatriacion: { label:"Repatriación", values: {
+                "1": { annual_no_discount:13600, annual_with_discount:12467 },
+                "2": { annual_no_discount:16200, annual_with_discount:14850 },
+                "3": { annual_no_discount:16200, annual_with_discount:14850 },
+                "4": { annual_no_discount:16200, annual_with_discount:14850 },
+                "6": { annual_no_discount:16200, annual_with_discount:14850 },
+                "8": { annual_no_discount:16200, annual_with_discount:14850 },
+                "10":{ annual_no_discount:16200, annual_with_discount:14850 }
+            }},
+            salud: { label:"Salud", values: {
+                "1": { annual_no_discount:23700, annual_with_discount:21725 },
+                "2": { annual_no_discount:27900, annual_with_discount:25575 },
+                "3": { annual_no_discount:27900, annual_with_discount:25575 },
+                "4": { annual_no_discount:27900, annual_with_discount:25575 },
+                "6": { annual_no_discount:27900, annual_with_discount:25575 },
+                "8": { annual_no_discount:27900, annual_with_discount:25575 },
+                "10":{ annual_no_discount:27900, annual_with_discount:25575 }
+            }},
+            // **NUEVO CAMPO: SEGURO**
+            seguro: { label:"Seguro", values: {
+                "1": { annual_no_discount:23400, annual_with_discount:23400 },
+                "2": { annual_no_discount:23400, annual_with_discount:23400 },
+                "3": { annual_no_discount:23400, annual_with_discount:23400 },
+                "4": { annual_no_discount:23400, annual_with_discount:23400 },
+                "6": { annual_no_discount:23400, annual_with_discount:23400 },
+                "8": { annual_no_discount:23400, annual_with_discount:23400 },
+                "10":{ annual_no_discount:23400, annual_with_discount:23400 }
+            }}
+        }
+    };
+})();
+
+// El resto del script de PAP_Candelaria (rebuildCuotas, calculate, listeners)
+function rebuildCuotas(){
+    const plan = $('planSelect');
+    const cuotasSel = $('cuotasSelect');
+    if(!plan || !cuotasSel) return;
+    const planId = plan.value;
+    cuotasSel.innerHTML = '';
+    const allowed = data.plans[planId].cuotasPermitidas;
+    allowed.forEach(q=>{
+        const opt = document.createElement('option');
+        opt.value = q;
+        opt.text = q;
+        cuotasSel.appendChild(opt);
+    });
+}
+
+function calculate(){
+    const warn = $('warn'); warn.textContent='';
+    const planId = $('planSelect').value;
+    const cuotas = parseInt($('cuotasSelect').value,10);
+    const qty_bici = Math.max(0, parseInt($('as_bici').value||0,10));
+    const qty_masc = Math.max(0, parseInt($('as_mascota').value||0,10));
+    const qty_rep = Math.max(0, parseInt($('as_repat').value||0,10));
+    const qty_sal = Math.max(0, parseInt($('as_salud').value||0,10));
+    const qty_seg = Math.max(0, parseInt($('as_seguro').value||0,10)); // <-- LECTURA DE CANTIDAD
+    
+    const plan = data.plans[planId];
+    if(!plan) { warn.textContent='Plan inválido'; return; }
+    if(!plan.cuotasPermitidas.includes(cuotas)){
+        warn.textContent = \`Cuotas no permitidas para \${plan.name}. Permite: \${plan.cuotasPermitidas.join(', ')}\`;
+        return;
+    }
+
+    const planVals = plan.values[String(cuotas)];
+    if(!planVals){ warn.textContent='No hay tarifa definida para esa combinación.'; return; }
+
+    const plan_anual_renov = planVals.annual_no_discount;
+
+    function getAdicionalValue(type, qty){
+        if(qty<=0) return {label:'', anual_renov:0};
+        let vals = data.assists[type].values[String(cuotas)] || data.assists[type].values["1"];
+        let label = \`\${data.assists[type].label}\`;
+        const anual_renov = vals.annual_no_discount * qty;
+        return {label, anual_renov};
+    }
+
+    const as_b = getAdicionalValue('bici', qty_bici);
+    const as_m = getAdicionalValue('mascota', qty_masc);
+    const as_r = getAdicionalValue('repatriacion', qty_rep);
+    const as_s = getAdicionalValue('salud', qty_sal);
+    const as_se = getAdicionalValue('seguro', qty_seg); // <-- CÁLCULO DE COSTO
+    
+    const final_plan_cost_renov = plan_anual_renov;
+    const table_plan_row_renov = plan_anual_renov;
+
+    // <--- SUMA DE ASISTENCIAS CORREGIDA para incluir SEGURO --->
+    const assists_renov_total = as_b.anual_renov + as_m.anual_renov + as_r.anual_renov + as_s.anual_renov + as_se.anual_renov;
+
+    const total_renov = final_plan_cost_renov + assists_renov_total;
+
+    const cuota_renov = total_renov / (cuotas>0?cuotas:1);
+
+    const tbody = $('resultBody'); tbody.innerHTML='';
+    
+    function addRow(label, valRenov, cuota){
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td'); td1.textContent = label;
+        const td2 = document.createElement('td'); td2.className='right'; td2.textContent = formatMoney(valRenov);
+        const td3 = document.createElement('td'); td3.className='right'; td3.textContent = cuota!==undefined?formatMoney(cuota):'-';
+        tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+        tbody.appendChild(tr);
+    }
+
+    $('resultTable').querySelector('thead tr').innerHTML = '<th>Concepto</th><th class="right">Anual (Renovación)</th><th class="right">Cuota</th>';
+    const planLabel = \`\${data.plans[planId].name} (Plan Base)\`;
+    addRow(planLabel, table_plan_row_renov, table_plan_row_renov / (cuotas>0?cuotas:1));
+
+    if(qty_bici>0) addRow(\`Asistencia \${as_b.label} x \${qty_bici}\`, as_b.anual_renov, as_b.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_masc>0) addRow(\`Asistencia \${as_m.label} x \${qty_masc}\`, as_m.anual_renov, as_m.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_rep>0) addRow(\`Asistencia \${as_r.label} x \${qty_rep}\`, as_r.anual_renov, as_r.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_sal>0) addRow(\`Asistencia \${as_s.label} x \${qty_sal}\`, as_s.anual_renov, as_s.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_seg>0) addRow(\`Asistencia \${as_se.label} x \${qty_seg}\`, as_se.anual_renov, as_se.anual_renov/(cuotas>0?cuotas:1)); // <-- FILA DEL SEGURO
+
+    const foot = $('resultFoot'); foot.innerHTML = '';
+    const trT = document.createElement('tr');
+    trT.innerHTML = \`<th>Total de Renovación</th><th class="right">\${formatMoney(total_renov)}</th><th class="right">\${formatMoney(cuota_renov)}</th>\`;
+    foot.appendChild(trT);
+
+    $('textsArea').innerHTML = '';
+    const divPlan = document.createElement('div'); divPlan.id = 'textPlan'; $('textsArea').appendChild(divPlan);
+    const divAsist = document.createElement('div'); divAsist.id = 'textAsistencias'; divAsist.style.marginTop = '6px'; $('textsArea').appendChild(divAsist);
+    const divTotal = document.createElement('div'); divTotal.id = 'textTotal'; divTotal.style.marginTop = '6px'; $('textsArea').appendChild(divTotal);
+
+    $('textPlan').textContent = \`Estimado Cliente, el plan \${data.plans[planId].name} en \${cuotas} cuota(s) tiene un valor base anual de \${formatMoney(plan_anual_renov)} para la renovación.\`;
+    
+    let assist_text = [];
+    if (qty_bici > 0) assist_text.push(\`\${qty_bici} Bicicleta\`);
+    if (qty_masc > 0) assist_text.push(\`\${qty_masc} Mascota\`);
+    if (qty_rep > 0) assist_text.push(\`\${qty_rep} Repatriación\`);
+    if (qty_sal > 0) assist_text.push(\`\${qty_sal} Salud\`);
+    if (qty_seg > 0) assist_text.push(\`\${qty_seg} Seguro\`); // <-- SEGURO EN EL RESUMEN DE TEXTO
+
+    if(assists_renov_total > 0) {
+        $('textAsistencias').textContent = \`Las asistencias \${assist_text.join(', ')} suman un costo anual de \${formatMoney(assists_renov_total)}.\`;
+    } else {
+        $('textAsistencias').textContent = 'No se incluyeron asistencias opcionales.';
+    }
+
+    $('textTotal').textContent = \`El total a pagar por cuota, incluyendo el plan y las asistencias, será de \${formatMoney(cuota_renov)} por cuota (\${cuotas} cuotas).\`;
+
+    window._lastSummary = {
+        plan: data.plans[planId].name,
+        cuotas,
+        total_renov, cuota_renov,
+        assists_renov_total,
+        assists:{bici:qty_bici,mascota:qty_masc,repat:qty_rep,salud:qty_sal,seguro:qty_seg} // <-- SEGURO EN EL OBJETO FINAL
+    };
+}
+
+function initUI(){
+    const planSel = $('planSelect');
+    if (!planSel) return;
+    for(const key of Object.keys(data.plans)){
+        const p = data.plans[key];
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.text = \`\${p.name} (\${p.cupos} cupo\${p.cupos>1?'s':''})\`;
+        planSel.appendChild(opt);
+    }
+    planSel.addEventListener('change', rebuildCuotas);
+    rebuildCuotas();
+
+    $('btnCalc').addEventListener('click', calculate);
+    $('btnReset').addEventListener('click', ()=>{
+        $('planSelect').value='2'; 
+        rebuildCuotas();
+        $('cuotasSelect').value='10';
+        $('as_bici').value='0'; $('as_mascota').value='0'; $('as_repat').value='0'; $('as_salud').value='0'; $('as_seguro').value='0'; // <-- RESET SEGURO
+        $('resultBody').innerHTML=''; $('resultFoot').innerHTML=''; 
+        const textsArea = $('textsArea'); textsArea.innerHTML = '';
+        $('warn').textContent='';
+    });
+    $('btnCopy').addEventListener('click', ()=>{
+        const s = window._lastSummary;
+        if(!s){ alert('No hay resumen para copiar. Haz un cálculo primero.'); return; }
+        let txt = \`Resumen cotización (RENOVACIÓN):\\nPlan: \${s.plan}\\nCuotas: \${s.cuotas}\\nTotal anual: \${formatMoney(s.total_renov)}\\nCuota por mes: \${formatMoney(s.cuota_renov)}\\n\`;
+        
+        let assist_copy_text = [];
+        const a = s.assists;
+        if (a.bici > 0) assist_copy_text.push(\`Bicicleta x\${a.bici}\`);
+        if (a.mascota > 0) assist_copy_text.push(\`Mascota x\${a.mascota}\`);
+        if (a.repat > 0) assist_copy_text.push(\`Repatriación x\${a.repat}\`);
+        if (a.salud > 0) assist_copy_text.push(\`Salud x\${a.salud}\`);
+        if (a.seguro > 0) assist_copy_text.push(\`Seguro x\${a.seguro}\`); // <-- COPIAR SEGURO
+    
+        if(s.assists_renov_total > 0) {
+            txt += \`Asistencias Opcionales: \${assist_copy_text.join(', ')}. Costo anual: \${formatMoney(s.assists_renov_total)}\\n\`;
+        } else {
+            txt += \`Asistencias Opcionales: Ninguna.\\n\`;
+        }
+        
+        navigator.clipboard && navigator.clipboard.writeText(txt).then(()=> alert('Resumen copiado'));
+    });
+    calculate(); // Ejecutar cálculo inicial para mostrar datos por defecto
+}
+initUI();
+`;
+function loadPAP_Candelaria() {
+    loadLiquidador(PAP_Candelaria_HTML, 'liquidador-pap-candelaria', PAP_Candelaria_Script, 'Liquidador PAP — La Candelaria');
+}
+
+       // 4. PAP Los Olivos
+const PAP_Olivos_HTML = `
+    <h1>Liquidador PAP — Los Olivos (Planes y Asistencias)</h1>
+    <div class="card">
+        <div class="small muted">Datos base del plan</div>
+        <div class="row" style="margin-top:6px; margin-bottom: 15px;">
+            <div><label>Selecciona el Plan PAP</label><select id="planSelect"></select></div>
+            <div><label>Número de cuotas</label><select id="cuotasSelect"></select></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="small muted">Asistencias opcionales (indica cantidad por asistencia)</div>
+        <div class="row" style="margin-top:8px">
+            <div class="input-group"><label>Bicicleta (cant.)</label><input id="as_bici" type="number" min="0" max="10" value="0"/></div>
+            <div class="input-group"><label>Mascota (cant.)</label><input id="as_mascota" type="number" min="0" max="3" value="0"/></div>
+            <div class="input-group"><label>Repatriación (cant.)</label><input id="as_repat" type="number" min="0" max="10" value="0"/></div>
+            <div class="input-group"><label>Salud (cant.)</label><input id="as_salud" type="number" min="0" max="10" value="0"/></div>
+            <div class="input-group"><label>Seguro (cant.)</label><input id="as_seguro" type="number" min="0" max="1" value="0"/></div>
+        </div>
+    </div>
+    <div style="margin-bottom:12px">
+        <button class="btn" id="btnCalc">Calcular</button>
+        <button class="btn" id="btnCopy">Copiar resumen</button>
+        <button class="btn" id="btnReset">Nuevo cálculo</button>
+        <span id="warn" class="warning" style="margin-left:10px"></span>
+    </div>
+    <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Resultados del cálculo (Tarifa de Renovación)</div>
+        <table id="resultTable" aria-live="polite">
+            <thead><tr><th>Concepto</th><th class="right">Anual (Renovación)</th><th class="right">Cuota</th></tr></thead>
+            <tbody id="resultBody"></tbody>
+            <tfoot id="resultFoot"></tfoot>
+        </table>
+        <div class="summary" id="textsArea">
+            <div id="textPlan"></div>
+            <div id="textAsistencias" style="margin-top:6px"></div>
+            <div id="textTotal" style="margin-top:6px"></div>
+        </div>
+    </div>
+`;
+const PAP_Olivos_Script = `
+const data = (function(){
+    return {
+        plans: {
+            "1": { name:"UNO INTEGRAL", cupos:1, cuotasPermitidas:[1,2,4],
+                values: {
+                    "1": { annual_no_discount:73850 },
+                    "2": { annual_no_discount:84200 },
+                    "4": { annual_no_discount:84200 },
+                }
+            },
+            "2": { name:"UNIDOS INTEGRAL", cuotasPermitidas:[1,2,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:255600 },
+                    "2": { annual_no_discount:317000 },
+                    "4": { annual_no_discount:317000 },
+                    "6": { annual_no_discount:317000 },
+                    "8": { annual_no_discount:317000 },
+                    "10":{ annual_no_discount:317000 }
+                }
+            },
+            "3": { name:"INTEGRAL DIEZ", cupos:10, cuotasPermitidas:[1,2,3,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:312600 },
+                    "2": { annual_no_discount:366300 },
+                    "3": { annual_no_discount:366300 },
+                    "4": { annual_no_discount:366300 },
+                    "6": { annual_no_discount:366300 },
+                    "8": { annual_no_discount:366300 },
+                    "10":{ annual_no_discount:366300 }
+                }
+            },
+        },
+        mayores: {
+            "1": { annual_no_discount:163200, annual_with_discount:149600 },
+            "2": { annual_no_discount:188840, annual_with_discount:173103 },
+            "10":{ annual_no_discount:188840, annual_with_discount:173103 }
+        },
+        adicionales: {
+            adulto: { label:"Adulto (18-69)", values: { "1": { annual_no_discount:73850 } }},
+            menor: { label:"Menor (<18)", values: { "1": { annual_no_discount:51950 } }}
+        },
+        assists: {
+            bici: { label:"Bicicleta", values: {
+                "1": { annual_no_discount:18620, annual_with_discount:17068 },
+                "2": { annual_no_discount:21600, annual_with_discount:19800 },
+                "3": { annual_no_discount:21600, annual_with_discount:19800 },
+                "4": { annual_no_discount:21600, annual_with_discount:19800 },
+                "6": { annual_no_discount:21600, annual_with_discount:19800 },
+                "8": { annual_no_discount:21600, annual_with_discount:19800 },
+                "10":{ annual_no_discount:21600, annual_with_discount:19800 }
+            }},
+            mascota: { label:"Mascota", values: {
+                "1": { annual_no_discount:78000, annual_with_discount:71500 },
+                "2": { annual_no_discount:87000, annual_with_discount:79750 },
+                "3": { annual_no_discount:87000, annual_with_discount:79750 },
+                "4": { annual_no_discount:87000, annual_with_discount:79750 },
+                "6": { annual_no_discount:87000, annual_with_discount:79750 },
+                "8": { annual_no_discount:87000, annual_with_discount:79750 },
+                "10":{ annual_no_discount:87000, annual_with_discount:79750 }
+            }},
+            repatriacion: { label:"Repatriación", values: {
+                "1": { annual_no_discount:13600, annual_with_discount:12467 },
+                "2": { annual_no_discount:16200, annual_with_discount:14850 },
+                "3": { annual_no_discount:16200, annual_with_discount:14850 },
+                "4": { annual_no_discount:16200, annual_with_discount:14850 },
+                "6": { annual_no_discount:16200, annual_with_discount:14850 },
+                "8": { annual_no_discount:16200, annual_with_discount:14850 },
+                "10":{ annual_no_discount:16200, annual_with_discount:14850 }
+            }},
+            salud: { label:"Salud", values: {
+                "1": { annual_no_discount:23700, annual_with_discount:21725 },
+                "2": { annual_no_discount:27900, annual_with_discount:25575 },
+                "3": { annual_no_discount:27900, annual_with_discount:25575 },
+                "4": { annual_no_discount:27900, annual_with_discount:25575 },
+                "6": { annual_no_discount:27900, annual_with_discount:25575 },
+                "8": { annual_no_discount:27900, annual_with_discount:25575 },
+                "10":{ annual_no_discount:27900, annual_with_discount:25575 }
+            }},
+            // **NUEVO CAMPO: SEGURO**
+            seguro: { label:"Seguro", values: {
+                "1": { annual_no_discount:23400, annual_with_discount:23400 },
+                "2": { annual_no_discount:23400, annual_with_discount:23400 },
+                "3": { annual_no_discount:23400, annual_with_discount:23400 },
+                "4": { annual_no_discount:23400, annual_with_discount:23400 },
+                "6": { annual_no_discount:23400, annual_with_discount:23400 },
+                "8": { annual_no_discount:23400, annual_with_discount:23400 },
+                "10":{ annual_no_discount:23400, annual_with_discount:23400 }
+            }}
+        }
+    };
+})();
+
+// El resto del script de PAP_Olivos (rebuildCuotas, calculate, listeners)
+function rebuildCuotas(){
+    const plan = $('planSelect');
+    const cuotasSel = $('cuotasSelect');
+    if(!plan || !cuotasSel) return;
+    const planId = plan.value;
+    cuotasSel.innerHTML = '';
+    const allowed = data.plans[planId].cuotasPermitidas;
+    allowed.forEach(q=>{
+        const opt = document.createElement('option');
+        opt.value = q;
+        opt.text = q;
+        cuotasSel.appendChild(opt);
+    });
+}
+
+function calculate(){
+    const warn = $('warn'); warn.textContent='';
+    const planId = $('planSelect').value;
+    const cuotas = parseInt($('cuotasSelect').value,10);
+    const qty_bici = Math.max(0, parseInt($('as_bici').value||0,10));
+    const qty_masc = Math.max(0, parseInt($('as_mascota').value||0,10));
+    const qty_rep = Math.max(0, parseInt($('as_repat').value||0,10));
+    const qty_sal = Math.max(0, parseInt($('as_salud').value||0,10));
+    const qty_seg = Math.max(0, parseInt($('as_seguro').value||0,10)); // <-- LECTURA DE CANTIDAD
+    
+    const plan = data.plans[planId];
+    if(!plan) { warn.textContent='Plan inválido'; return; }
+    if(!plan.cuotasPermitidas.includes(cuotas)){
+        warn.textContent = \`Cuotas no permitidas para \${plan.name}. Permite: \${plan.cuotasPermitidas.join(', ')}\`;
+        return;
+    }
+
+    const planVals = plan.values[String(cuotas)];
+    if(!planVals){ warn.textContent='No hay tarifa definida para esa combinación.'; return; }
+
+    const plan_anual_renov = planVals.annual_no_discount;
+
+    function getAdicionalValue(type, qty){
+        if(qty<=0) return {label:'', anual_renov:0};
+        let vals = data.assists[type].values[String(cuotas)] || data.assists[type].values["1"];
+        let label = \`\${data.assists[type].label}\`;
+        // PAP no tiene descuento de primer año, solo tarifa de renovación
+        const anual_renov = (type === 'seguro' ? data.assists.seguro.values[String(cuotas)].annual_no_discount : vals.annual_no_discount) * qty; 
+        return {label, anual_renov};
+    }
+
+    const as_b = getAdicionalValue('bici', qty_bici);
+    const as_m = getAdicionalValue('mascota', qty_masc);
+    const as_r = getAdicionalValue('repatriacion', qty_rep);
+    const as_s = getAdicionalValue('salud', qty_sal);
+    const as_se = getAdicionalValue('seguro', qty_seg); // <-- CÁLCULO DE COSTO
+
+    const final_plan_cost_renov = plan_anual_renov;
+    const table_plan_row_renov = plan_anual_renov;
+
+    // <--- SUMA DE ASISTENCIAS CORREGIDA para incluir SEGURO --->
+    const assists_renov_total = as_b.anual_renov + as_m.anual_renov + as_r.anual_renov + as_s.anual_renov + as_se.anual_renov;
+
+    const total_renov = final_plan_cost_renov + assists_renov_total;
+
+    const cuota_renov = total_renov / (cuotas>0?cuotas:1);
+
+    const tbody = $('resultBody'); tbody.innerHTML='';
+    
+    function addRow(label, valRenov, cuota){
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td'); td1.textContent = label;
+        const td2 = document.createElement('td'); td2.className='right'; td2.textContent = formatMoney(valRenov);
+        const td3 = document.createElement('td'); td3.className='right'; td3.textContent = cuota!==undefined?formatMoney(cuota):'-';
+        tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+        tbody.appendChild(tr);
+    }
+
+    $('resultTable').querySelector('thead tr').innerHTML = '<th>Concepto</th><th class="right">Anual (Renovación)</th><th class="right">Cuota</th>';
+    const planLabel = \`\${data.plans[planId].name} (Plan Base)\`;
+    addRow(planLabel, table_plan_row_renov, table_plan_row_renov / (cuotas>0?cuotas:1));
+
+    if(qty_bici>0) addRow(\`Asistencia \${as_b.label} x \${qty_bici}\`, as_b.anual_renov, as_b.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_masc>0) addRow(\`Asistencia \${as_m.label} x \${qty_masc}\`, as_m.anual_renov, as_m.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_rep>0) addRow(\`Asistencia \${as_r.label} x \${qty_rep}\`, as_r.anual_renov, as_r.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_sal>0) addRow(\`Asistencia \${as_s.label} x \${qty_sal}\`, as_s.anual_renov, as_s.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_seg>0) addRow(\`Asistencia \${as_se.label} x \${qty_seg}\`, as_se.anual_renov, as_se.anual_renov/(cuotas>0?cuotas:1)); // <-- FILA DEL SEGURO
+
+    const foot = $('resultFoot'); foot.innerHTML = '';
+    const trT = document.createElement('tr');
+    trT.innerHTML = \`<th>Total de Renovación</th><th class="right">\${formatMoney(total_renov)}</th><th class="right">\${formatMoney(cuota_renov)}</th>\`;
+    foot.appendChild(trT);
+
+    $('textsArea').innerHTML = '';
+    const divPlan = document.createElement('div'); divPlan.id = 'textPlan'; $('textsArea').appendChild(divPlan);
+    const divAsist = document.createElement('div'); divAsist.id = 'textAsistencias'; divAsist.style.marginTop = '6px'; $('textsArea').appendChild(divAsist);
+    const divTotal = document.createElement('div'); divTotal.id = 'textTotal'; divTotal.style.marginTop = '6px'; $('textsArea').appendChild(divTotal);
+
+    $('textPlan').textContent = \`Estimado Cliente, el plan \${data.plans[planId].name} en \${cuotas} cuota(s) tiene un valor base anual de \${formatMoney(plan_anual_renov)} para la renovación.\`;
+    
+    let assist_text = [];
+    if (qty_bici > 0) assist_text.push(\`\${qty_bici} Bicicleta\`);
+    if (qty_masc > 0) assist_text.push(\`\${qty_masc} Mascota\`);
+    if (qty_rep > 0) assist_text.push(\`\${qty_rep} Repatriación\`);
+    if (qty_sal > 0) assist_text.push(\`\${qty_sal} Salud\`);
+    if (qty_seg > 0) assist_text.push(\`\${qty_seg} Seguro\`); // <-- SEGURO EN EL RESUMEN DE TEXTO
+
+    if(assists_renov_total > 0) {
+        $('textAsistencias').textContent = \`Las asistencias \${assist_text.join(', ')} suman un costo anual de \${formatMoney(assists_renov_total)}.\`;
+    } else {
+        $('textAsistencias').textContent = 'No se incluyeron asistencias opcionales.';
+    }
+
+    $('textTotal').textContent = \`El total a pagar por cuota, incluyendo el plan y las asistencias, será de \${formatMoney(cuota_renov)} por cuota (\${cuotas} cuotas).\`;
+
+    window._lastSummary = {
+        plan: data.plans[planId].name,
+        cuotas,
+        total_renov, cuota_renov,
+        assists_renov_total,
+        assists:{bici:qty_bici,mascota:qty_masc,repat:qty_rep,salud:qty_sal,seguro:qty_seg} // <-- SEGURO EN EL OBJETO FINAL
+    };
+}
+
+function initUI(){
+    const planSel = $('planSelect');
+    if (!planSel) return;
+    for(const key of Object.keys(data.plans)){
+        const p = data.plans[key];
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.text = \`\${p.name} (\${p.cupos} cupo\${p.cupos>1?'s':''})\`;
+        planSel.appendChild(opt);
+    }
+    planSel.addEventListener('change', rebuildCuotas);
+    rebuildCuotas();
+
+    $('btnCalc').addEventListener('click', calculate);
+    $('btnReset').addEventListener('click', ()=>{
+        $('planSelect').value='3'; 
+        rebuildCuotas();
+        $('cuotasSelect').value='10';
+        $('as_bici').value='0'; $('as_mascota').value='0'; $('as_repat').value='0'; $('as_salud').value='0'; $('as_seguro').value='0'; // <-- RESET SEGURO
+        $('resultBody').innerHTML=''; $('resultFoot').innerHTML=''; 
+        const textsArea = $('textsArea'); textsArea.innerHTML = '';
+        $('warn').textContent='';
+    });
+    $('btnCopy').addEventListener('click', ()=>{
+        const s = window._lastSummary;
+        if(!s){ alert('No hay resumen para copiar. Haz un cálculo primero.'); return; }
+        let txt = \`Resumen cotización (RENOVACIÓN):\\nPlan: \${s.plan}\\nCuotas: \${s.cuotas}\\nTotal anual: \${formatMoney(s.total_renov)}\\nCuota por mes: \${formatMoney(s.cuota_renov)}\\n\`;
+        
+        let assist_copy_text = [];
+        const a = s.assists;
+        if (a.bici > 0) assist_copy_text.push(\`Bicicleta x\${a.bici}\`);
+        if (a.mascota > 0) assist_copy_text.push(\`Mascota x\${a.mascota}\`);
+        if (a.repat > 0) assist_copy_text.push(\`Repatriación x\${a.repat}\`);
+        if (a.salud > 0) assist_copy_text.push(\`Salud x\${a.salud}\`);
+        if (a.seguro > 0) assist_copy_text.push(\`Seguro x\${a.seguro}\`); // <-- COPIAR SEGURO
+    
+        if(s.assists_renov_total > 0) {
+            txt += \`Asistencias Opcionales: \${assist_copy_text.join(', ')}. Costo anual: \${formatMoney(s.assists_renov_total)}\\n\`;
+        } else {
+            txt += \`Asistencias Opcionales: Ninguna.\\n\`;
+        }
+        
+        navigator.clipboard && navigator.clipboard.writeText(txt).then(()=> alert('Resumen copiado'));
+    });
+    calculate(); // Ejecutar cálculo inicial para mostrar datos por defecto
+}
+initUI();
+`;
+function loadPAP_Olivos() {
+    loadLiquidador(PAP_Olivos_HTML, 'liquidador-pap-olivos', PAP_Olivos_Script, 'Liquidador PAP — Los Olivos');
+}
+
+       // 5. UXS La Candelaria
+const UXS_Candelaria_HTML = `
+    <h1>Liquidador UXS — La Candelaria (Asistencias/Adiciones)</h1>
+    <div class="card">
+        <div class="small muted">Datos base del plan y adicionales de persona</div>
+        <div class="row" style="margin-top:6px; margin-bottom: 15px;">
+            <div><label>Selecciona el Plan UXS</label><select id="planSelect"></select></div>
+            <div><label>Número de cuotas</label><select id="cuotasSelect"></select></div>
+        </div>
+        <div class="row">
+            <div class="input-group"><label>Adultos mayores (&gt;65)</label><input id="numMayores" type="number" min="0" max="9" value="0" /></div>
+            <div class="input-group"><label>Adultos (25-64 años)</label><input id="numAdultos" type="number" min="0" max="9" value="0" /></div>
+            <div class="input-group"><label>Menores (&lt;25 años)</label><input id="numMenores" type="number" min="0" max="9" value="0" /></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="small muted">Asistencias opcionales (indica cantidad por asistencia)</div>
+        <div class="row" style="margin-top:8px">
+            <div class="input-group"><label>Bicicleta (cant.)</label><input id="as_bici" type="number" min="0" value="0"/></div>
+            <div class="input-group"><label>Mascota (cant.)</label><input id="as_mascota" type="number" min="0" value="0"/></div>
+            <div class="input-group"><label>Repatriación (cant.)</label><input id="as_repat" type="number" min="0" value="0"/></div>
+            <div class="input-group"><label>Salud (cant.)</label><input id="as_salud" type="number" min="0" value="0"/></div>
+            <div class="input-group"><label>Seguro (cant.)</label><input id="as_seguro" type="number" min="0" value="0"/></div>
+        </div>
+    </div>
+    <div style="margin-bottom:12px">
+        <button class="btn" id="btnCalc">Calcular</button>
+        <button class="btn" id="btnCopy">Copiar resumen</button>
+        <button class="btn" id="btnReset">Nuevo cálculo</button>
+        <span id="warn" class="warning" style="margin-left:10px"></span>
+    </div>
+    <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Resultados del cálculo (Tarifa de Renovación)</div>
+        <table id="resultTable" aria-live="polite">
+            <thead><tr><th>Concepto</th><th class="right">Anual (Renovación)</th><th class="right">Cuota</th></tr></thead>
+            <tbody id="resultBody"></tbody>
+            <tfoot id="resultFoot"></tfoot>
+        </table>
+        <div class="summary" id="textsArea">
+            <div id="textPlan"></div>
+            <div id="textMayores" style="margin-top:6px"></div>
+            <div id="textTotal" style="margin-top:6px"></div>
+        </div>
+    </div>
+`;
+const UXS_Candelaria_Script = `
+const data = (function(){
+    return {
+        plans: {
+            "1": { name:"CANDELARIA", cuotasPermitidas:[1,2,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:385000, annual_with_discount:385000 },
+                    "2": { annual_no_discount:444000, annual_with_discount:444000 },
+                    "4": { annual_no_discount:444000, annual_with_discount:444000 },
+                    "6": { annual_no_discount:444000, annual_with_discount:444000 },
+                    "8": { annual_no_discount:444000, annual_with_discount:444000 },
+                    "10":{ annual_no_discount:444000, annual_with_discount:444000 }
+                }
+            },
+            "2": { name:"CANDELARIA UNIFAMILIAR", cupos:7 , cuotasPermitidas:[1,2,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:412300, annual_with_discount:412300 },
+                    "2": { annual_no_discount:475600, annual_with_discount:475600 },
+                    "4": { annual_no_discount:475600, annual_with_discount:475600 },
+                    "6": { annual_no_discount:475600, annual_with_discount:475600 },
+                    "8": { annual_no_discount:475600, annual_with_discount:475600 },
+                    "10":{ annual_no_discount:475600, annual_with_discount:475600 }
+                }
+            },
+            "3": { name:"CANDELARIA DIEZ", cupos:10, cuotasPermitidas:[1,2,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:439600, annual_with_discount:261400 },
+                    "2": { annual_no_discount:506400, annual_with_discount:506400 },
+                    "4": { annual_no_discount:506400, annual_with_discount:506400 },
+                    "6": { annual_no_discount:506400, annual_with_discount:506400 },
+                    "8": { annual_no_discount:506400, annual_with_discount:506400 },
+                    "10":{ annual_no_discount:506400, annual_with_discount:506400 }
+                }
+            },
+        },
+        mayores: {
+            "1": { annual_no_discount:199000, annual_with_discount:199000 },
+            "2": { annual_no_discount:229800, annual_with_discount:229800 },
+            "3": { annual_no_discount:229800, annual_with_discount:229800 },
+            "4": { annual_no_discount:229800, annual_with_discount:229800 },
+            "6": { annual_no_discount:229800, annual_with_discount:229800 },
+            "8": { annual_no_discount:229800, annual_with_discount:229800 },
+            "10":{ annual_no_discount:229800, annual_with_discount:229800 }
+        },
+        adicionales: {
+            adulto: { label:"Adulto (30-64)", values: {
+                "1": { annual_no_discount:132700 },
+                "2": { annual_no_discount:153600 },
+                "3": { annual_no_discount:153600 },
+                "4": { annual_no_discount:153600 },
+                "6": { annual_no_discount:153600 },
+                "8": { annual_no_discount:153600 },
+                "10":{ annual_no_discount:153600 }
+            }},
+            menor: { label:"Menor (<29)", values: {
+                "1": { annual_no_discount:66400 },
+                "2": { annual_no_discount:76800 },
+                "3": { annual_no_discount:76800 },
+                "4": { annual_no_discount:76800 },
+                "6": { annual_no_discount:76800 },
+                "8": { annual_no_discount:76800 },
+                "10":{ annual_no_discount:76800 }
+            }}
+        },
+        assists: {
+            bici: { label:"Bicicleta", values: {
+                "1": { annual_no_discount:18620, annual_with_discount:17068 },
+                "2": { annual_no_discount:21600, annual_with_discount:19800 },
+                "3": { annual_no_discount:21600, annual_with_discount:19800 },
+                "4": { annual_no_discount:21600, annual_with_discount:19800 },
+                "6": { annual_no_discount:21600, annual_with_discount:19800 },
+                "8": { annual_no_discount:21600, annual_with_discount:19800 },
+                "10":{ annual_no_discount:21600, annual_with_discount:19800 }
+            }},
+            mascota: { label:"Mascota", values: {
+                "1": { annual_no_discount:78000, annual_with_discount:71500 },
+                "2": { annual_no_discount:87000, annual_with_discount:79750 },
+                "3": { annual_no_discount:87000, annual_with_discount:79750 },
+                "4": { annual_no_discount:87000, annual_with_discount:79750 },
+                "6": { annual_no_discount:87000, annual_with_discount:79750 },
+                "8": { annual_no_discount:87000, annual_with_discount:79750 },
+                "10":{ annual_no_discount:87000, annual_with_discount:79750 }
+            }},
+            repatriacion: { label:"Repatriación", values: {
+                "1": { annual_no_discount:13600, annual_with_discount:12467 },
+                "2": { annual_no_discount:16200, annual_with_discount:14850 },
+                "3": { annual_no_discount:16200, annual_with_discount:14850 },
+                "4": { annual_no_discount:16200, annual_with_discount:14850 },
+                "6": { annual_no_discount:16200, annual_with_discount:14850 },
+                "8": { annual_no_discount:16200, annual_with_discount:14850 },
+                "10":{ annual_no_discount:16200, annual_with_discount:14850 }
+            }},
+            salud: { label:"Salud", values: {
+                "1": { annual_no_discount:23700, annual_with_discount:21725 },
+                "2": { annual_no_discount:27900, annual_with_discount:25575 },
+                "3": { annual_no_discount:27900, annual_with_discount:25575 },
+                "4": { annual_no_discount:27900, annual_with_discount:25575 },
+                "6": { annual_no_discount:27900, annual_with_discount:25575 },
+                "8": { annual_no_discount:27900, annual_with_discount:25575 },
+                "10":{ annual_no_discount:27900, annual_with_discount:25575 }
+            }},
+            // **NUEVO CAMPO: SEGURO**
+            seguro: { label:"Seguro", values: {
+                "1": { annual_no_discount:23400, annual_with_discount:23400 },
+                "2": { annual_no_discount:23400, annual_with_discount:23400 },
+                "3": { annual_no_discount:23400, annual_with_discount:23400 },
+                "4": { annual_no_discount:23400, annual_with_discount:23400 },
+                "6": { annual_no_discount:23400, annual_with_discount:23400 },
+                "8": { annual_no_discount:23400, annual_with_discount:23400 },
+                "10":{ annual_no_discount:23400, annual_with_discount:23400 }
+            }}
+        }
+    };
+})();
+
+// El resto del script de UXS_Candelaria (rebuildCuotas, calculate, listeners)
+function rebuildCuotas(){
+    const plan = $('planSelect');
+    const cuotasSel = $('cuotasSelect');
+    if(!plan || !cuotasSel) return;
+    const planId = plan.value;
+    cuotasSel.innerHTML = '';
+    const allowed = data.plans[planId].cuotasPermitidas;
+    allowed.forEach(q=>{
+        const opt = document.createElement('option');
+        opt.value = q;
+        opt.text = q;
+        cuotasSel.appendChild(opt);
+    });
+}
+
+function calculate(){
+    const warn = $('warn'); warn.textContent='';
+    const planId = $('planSelect').value;
+    const cuotas = parseInt($('cuotasSelect').value,10);
+    const nMay = Math.max(0, Math.min(10, parseInt($('numMayores').value||0,10)));
+    const nAdult = Math.max(0, Math.min(10, parseInt($('numAdultos').value||0,10)));
+    const nMenor = Math.max(0, Math.min(10, parseInt($('numMenores').value||0,10)));
+    const qty_bici = Math.max(0, parseInt($('as_bici').value||0,10));
+    const qty_masc = Math.max(0, parseInt($('as_mascota').value||0,10));
+    const qty_rep = Math.max(0, parseInt($('as_repat').value||0,10));
+    const qty_sal = Math.max(0, parseInt($('as_salud').value||0,10));
+    const qty_seg = Math.max(0, parseInt($('as_seguro').value||0,10)); // <-- LECTURA DE CANTIDAD
+    
+    const plan = data.plans[planId];
+    if(!plan) { warn.textContent='Plan inválido'; return; }
+    if(!plan.cuotasPermitidas.includes(cuotas)){
+        warn.textContent = \`Cuotas no permitidas para \${plan.name}. Permite: \${plan.cuotasPermitidas.join(', ')}\`;
+        return;
+    }
+
+    const planVals = plan.values[String(cuotas)];
+    if(!planVals){ warn.textContent='No hay tarifa definida para esa combinación.'; return; }
+
+    const plan_anual_renov = planVals.annual_no_discount;
+    
+    function getAdicionalValue(type, qty, isMayor = false){
+        if(qty<=0) return {label:'', anual_renov:0, qty:0};
+        let vals;
+        let label;
+
+        if(isMayor){
+            vals = data.mayores[String(cuotas)] || data.mayores["2"];
+            label = \`Adultos mayores (+65 años)\`;
+            const anual_renov = vals.annual_no_discount * qty;
+            return {label, anual_renov, qty:qty};
+        } else if(data.adicionales[type]){
+            vals = data.adicionales[type].values[String(cuotas)] || data.adicionales[type].values["1"];
+            label = \`\${data.adicionales[type].label}\`;
+            const anual_renov = vals.annual_no_discount * qty;
+            return {label, anual_renov, qty:qty};
+        } else if (data.assists[type]){
+            vals = data.assists[type].values[String(cuotas)] || data.assists[type].values["1"];
+            label = \`\${data.assists[type].label}\`;
+            const anual_renov = vals.annual_no_discount * qty;
+            return {label, anual_renov, qty:qty};
+        }
+        return {label:'', anual_renov:0, qty:0};
+    }
+
+    const as_may = getAdicionalValue('mayores', nMay, true);
+    const as_adult = getAdicionalValue('adulto', nAdult);
+    const as_minor = getAdicionalValue('menor', nMenor);
+    const as_b = getAdicionalValue('bici', qty_bici);
+    const as_m = getAdicionalValue('mascota', qty_masc);
+    const as_r = getAdicionalValue('repatriacion', qty_rep);
+    const as_s = getAdicionalValue('salud', qty_sal);
+    const as_se = getAdicionalValue('seguro', qty_seg); // <-- CÁLCULO DE COSTO
+
+    const adicionales_personas_total_renov = as_may.anual_renov + as_adult.anual_renov + as_minor.anual_renov;
+    const final_plan_cost_renov = plan_anual_renov + adicionales_personas_total_renov;
+    const table_plan_row_renov = plan_anual_renov;
+
+    // <--- SUMA DE ASISTENCIAS CORREGIDA para incluir SEGURO --->
+    const assists_renov_total = as_b.anual_renov + as_m.anual_renov + as_r.anual_renov + as_s.anual_renov + as_se.anual_renov;
+    
+    const total_renov = final_plan_cost_renov + assists_renov_total;
+    const cuota_renov = total_renov / (cuotas>0?cuotas:1);
+
+    const tbody = $('resultBody'); tbody.innerHTML='';
+    
+    function addRow(label, valRenov, cuota){
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td'); td1.textContent = label;
+        const td2 = document.createElement('td'); td2.className='right'; td2.textContent = formatMoney(valRenov);
+        const td3 = document.createElement('td'); td3.className='right'; td3.textContent = cuota!==undefined?formatMoney(cuota):'-';
+        tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+        tbody.appendChild(tr);
+    }
+
+    $('resultTable').querySelector('thead tr').innerHTML = '<th>Concepto</th><th class="right">Anual (Renovación)</th><th class="right">Cuota</th>';
+    const planLabel = \`\${data.plans[planId].name} (Plan Base)\`;
+    addRow(planLabel, table_plan_row_renov, table_plan_row_renov / (cuotas>0?cuotas:1));
+
+    const adicionales_rows = [];
+    if(nMay>0) adicionales_rows.push(as_may);
+    if(nAdult>0) adicionales_rows.push(as_adult);
+    if(nMenor>0) adicionales_rows.push(as_minor);
+
+    adicionales_rows.forEach(a => {
+        const detalleCuota = a.anual_renov / (cuotas>0?cuotas:1);
+        addRow(\`Adicional \${a.label} x \${a.qty}\`, a.anual_renov, detalleCuota); 
+    });
+
+    if(qty_bici>0) addRow(\`Asistencia \${as_b.label} x \${qty_bici}\`, as_b.anual_renov, as_b.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_masc>0) addRow(\`Asistencia \${as_m.label} x \${qty_masc}\`, as_m.anual_renov, as_m.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_rep>0) addRow(\`Asistencia \${as_r.label} x \${qty_rep}\`, as_r.anual_renov, as_r.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_sal>0) addRow(\`Asistencia \${as_s.label} x \${qty_sal}\`, as_s.anual_renov, as_s.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_seg>0) addRow(\`Asistencia \${as_se.label} x \${qty_seg}\`, as_se.anual_renov, as_se.anual_renov/(cuotas>0?cuotas:1)); // <-- FILA DEL SEGURO
+
+    const foot = $('resultFoot'); foot.innerHTML = '';
+    const trT = document.createElement('tr');
+    trT.innerHTML = \`<th>Total de Renovación</th><th class="right">\${formatMoney(total_renov)}</th><th class="right">\${formatMoney(cuota_renov)}</th>\`;
+    foot.appendChild(trT);
+
+    $('textsArea').innerHTML = '';
+    const divPlan = document.createElement('div'); divPlan.id = 'textPlan'; $('textsArea').appendChild(divPlan);
+    const divAdic = document.createElement('div'); divAdic.id = 'textAdicionales'; divAdic.style.marginTop = '6px'; $('textsArea').appendChild(divAdic);
+    const divAsist = document.createElement('div'); divAsist.id = 'textAsistencias'; divAsist.style.marginTop = '6px'; $('textsArea').appendChild(divAsist);
+    const divTotal = document.createElement('div'); divTotal.id = 'textTotal'; divTotal.style.marginTop = '6px'; $('textsArea').appendChild(divTotal);
+
+    $('textPlan').textContent = \`Estimado Cliente, el plan UXS \${data.plans[planId].name} en \${cuotas} cuota(s) tiene un valor total anual de \${formatMoney(total_renov)} sin tiempo de carencia.\`;
+    
+    let adic_text = [];
+    if (nMay > 0) adic_text.push(\`\${nMay} adulto(s) mayor(es) (+65 años)\`);
+    if (nAdult > 0) adic_text.push(\`\${nAdult} adulto(s) (30-64 años)\`);
+    if (nMenor > 0) adic_text.push(\`\${nMenor} menor(es) (<29 años)\`);
+
+    if(adicionales_personas_total_renov > 0){
+        $('textAdicionales').textContent = \`Su plan incluye \${adic_text.join(', ')} adicionales, con un costo total anual de \${formatMoney(adicionales_personas_total_renov)}.\`;
+    } else {
+        $('textAdicionales').textContent = 'No se incluyeron adicionales de persona en esta cotización.';
+    }
+
+    let assist_text = [];
+    if (qty_bici > 0) assist_text.push(\`\${qty_bici} Bicicleta\`);
+    if (qty_masc > 0) assist_text.push(\`\${qty_masc} Mascota\`);
+    if (qty_rep > 0) assist_text.push(\`\${qty_rep} Repatriación\`);
+    if (qty_sal > 0) assist_text.push(\`\${qty_sal} Salud\`);
+    if (qty_seg > 0) assist_text.push(\`\${qty_seg} Seguro\`); // <-- SEGURO EN EL RESUMEN DE TEXTO
+
+    if(assists_renov_total > 0) {
+        $('textAsistencias').textContent = \`Las asistencias \${assist_text.join(', ')} suman un costo anual de \${formatMoney(assists_renov_total)}.\`;
+    } else {
+        $('textAsistencias').textContent = 'No se incluyeron asistencias opcionales.';
+    }
+
+    $('textTotal').textContent = \`El total a pagar por cuota, incluyendo el plan, adicionales y asistencias, será de \${formatMoney(cuota_renov)} por cuota (\${cuotas} cuotas).\`;
+
+    window._lastSummary = {
+        plan: data.plans[planId].name,
+        cuotas,
+        total_renov, cuota_renov,
+        nMay, nAdult, nMenor,
+        adicionales_personas_total_renov,
+        assists_renov_total,
+        assists:{bici:qty_bici,mascota:qty_masc,repat:qty_rep,salud:qty_sal,seguro:qty_seg} // <-- SEGURO EN EL OBJETO FINAL
+    };
+}
+
+function initUI(){
+    const planSel = $('planSelect');
+    if (!planSel) return;
+    for(const key of Object.keys(data.plans)){
+        const p = data.plans[key];
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.text = \`\${p.name} (\${p.cupos} cupo\${p.cupos>1?'s':''})\`;
+        planSel.appendChild(opt);
+    }
+    planSel.addEventListener('change', rebuildCuotas);
+    rebuildCuotas();
+
+    $('btnCalc').addEventListener('click', calculate);
+    $('btnReset').addEventListener('click', ()=>{
+        $('planSelect').value='3'; 
+        rebuildCuotas();
+        $('cuotasSelect').value='10';
+        $('numMayores').value='0'; 
+        $('numAdultos').value='0'; 
+        $('numMenores').value='0';
+        $('as_bici').value='0'; $('as_mascota').value='0'; $('as_repat').value='0'; $('as_salud').value='0'; $('as_seguro').value='0'; // <-- RESET SEGURO
+        $('resultBody').innerHTML=''; $('resultFoot').innerHTML=''; 
+        const textsArea = $('textsArea'); textsArea.innerHTML = ''; 
+        $('warn').textContent='';
+    });
+    $('btnCopy').addEventListener('click', ()=>{
+        const s = window._lastSummary;
+        if(!s){ alert('No hay resumen para copiar. Haz un cálculo primero.'); return; }
+        let txt = \`Resumen cotización (RENOVACIÓN):\\nPlan: \${s.plan}\\nCuotas: \${s.cuotas}\\nTotal anual: \${formatMoney(s.total_renov)}\\nCuota por mes: \${formatMoney(s.cuota_renov)}\\n\`;
+        
+        let adic_copy_text = [];
+        if (s.nMay > 0) adic_copy_text.push(\`\${s.nMay} Mayor (+70)\`);
+        if (s.nAdult > 0) adic_copy_text.push(\`\${s.nAdult} Adulto (18-69)\`);
+        if (s.nMenor > 0) adic_copy_text.push(\`\${s.nMenor} Menor (<18)\`);
+    
+        if(s.adicionales_personas_total_renov > 0) {
+            txt += \`Adicionales de persona: \${adic_copy_text.join(', ')}. Costo anual: \${formatMoney(s.adicionales_personas_total_renov)}\\n\`;
+        }
+        
+        let assist_copy_text = [];
+        const a = s.assists;
+        if (a.bici > 0) assist_copy_text.push(\`Bicicleta x\${a.bici}\`);
+        if (a.mascota > 0) assist_copy_text.push(\`Mascota x\${a.mascota}\`);
+        if (a.repat > 0) assist_copy_text.push(\`Repatriación x\${a.repat}\`);
+        if (a.salud > 0) assist_copy_text.push(\`Salud x\${a.salud}\`);
+        if (a.seguro > 0) assist_copy_text.push(\`Seguro x\${a.seguro}\`); // <-- COPIAR SEGURO
+    
+        if(s.assists_renov_total > 0) {
+            txt += \`Asistencias Opcionales: \${assist_copy_text.join(', ')}. Costo anual: \${formatMoney(s.assists_renov_total)}\\n\`;
+        }
+        
+        navigator.clipboard && navigator.clipboard.writeText(txt).then(()=> alert('Resumen copiado'));
+    });
+    calculate(); // Ejecutar cálculo inicial para mostrar datos por defecto
+}
+initUI();
+`;
+function loadUXS_Candelaria() {
+    loadLiquidador(UXS_Candelaria_HTML, 'liquidador-uxs-candelaria', UXS_Candelaria_Script, 'Liquidador UXS — La Candelaria');
+}
+
+        // 6. UXS Los Olivos
+const UXS_Olivos_HTML = `
+    <h1>Liquidador UXS — Los Olivos (Asistencias/Adiciones)</h1>
+    <div class="card">
+        <div class="small muted">Datos base del plan y adicionales de persona</div>
+        <div class="row" style="margin-top:6px; margin-bottom: 15px;">
+            <div><label>Selecciona el Plan UXS</label><select id="planSelect"></select></div>
+            <div><label>Número de cuotas</label><select id="cuotasSelect"></select></div>
+        </div>
+        <div class="row">
+            <div class="input-group"><label>Adultos mayores (&gt;65)</label><input id="numMayores" type="number" min="0" max="9" value="0" /></div>
+            <div class="input-group"><label>Adultos (25-64 años)</label><input id="numAdultos" type="number" min="0" max="9" value="0" /></div>
+            <div class="input-group"><label>Menores (&lt;25 años)</label><input id="numMenores" type="number" min="0" max="9" value="0" /></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="small muted">Asistencias opcionales (indica cantidad por asistencia)</div>
+        <div class="row" style="margin-top:8px">
+            <div class="input-group"><label>Bicicleta (cant.)</label><input id="as_bici" type="number" min="0" value="0"/></div>
+            <div class="input-group"><label>Mascota (cant.)</label><input id="as_mascota" type="number" min="0" value="0"/></div>
+            <div class="input-group"><label>Repatriación (cant.)</label><input id="as_repat" type="number" min="0" value="0"/></div>
+            <div class="input-group"><label>Salud (cant.)</label><input id="as_salud" type="number" min="0" value="0"/></div>
+            <div class="input-group"><label>Seguro (cant.)</label><input id="as_seguro" type="number" min="0" value="0"/></div>
+        </div>
+    </div>
+    <div style="margin-bottom:12px">
+        <button class="btn" id="btnCalc">Calcular</button>
+        <button class="btn" id="btnCopy">Copiar resumen</button>
+        <button class="btn" id="btnReset">Nuevo cálculo</button>
+        <span id="warn" class="warning" style="margin-left:10px"></span>
+    </div>
+    <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Resultados del cálculo (Tarifa de Renovación)</div>
+        <table id="resultTable" aria-live="polite">
+            <thead><tr><th>Concepto</th><th class="right">Anual (Renovación)</th><th class="right">Cuota</th></tr></thead>
+            <tbody id="resultBody"></tbody>
+            <tfoot id="resultFoot"></tfoot>
+        </table>
+        <div class="summary" id="textsArea">
+            <div id="textPlan"></div>
+            <div id="textMayores" style="margin-top:6px"></div>
+            <div id="textTotal" style="margin-top:6px"></div>
+        </div>
+    </div>
+`;
+const UXS_Olivos_Script = `
+const data = (function(){
+    return {
+        plans: {
+            "1": { name:"INTEGRAL UNIPERSONAL", cupos:1, cuotasPermitidas:[1,2,4],
+                values: {
+                    "1": { annual_no_discount:110550, annual_with_discount:110550 },
+                    "2": { annual_no_discount:127600, annual_with_discount:127600 },
+                    "4": { annual_no_discount:127600, annual_with_discount:127600 }
+                }
+            },
+            "2": { name:"INTEGRAL", cuotasPermitidas:[1,2,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:192500, annual_with_discount:192500 },
+                    "2": { annual_no_discount:222400, annual_with_discount:222400 },
+                    "4": { annual_no_discount:222400, annual_with_discount:222400 },
+                    "6": { annual_no_discount:222400, annual_with_discount:222400 },
+                    "8": { annual_no_discount:222400, annual_with_discount:222400 },
+                    "10":{ annual_no_discount:222400, annual_with_discount:222400 }
+                }
+            },
+            "3": { name:"INTEGRAL UNIFAMILIAR", cupos:7, cuotasPermitidas:[1,2,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:261400, annual_with_discount:261400 },
+                    "2": { annual_no_discount:302000, annual_with_discount:302000 },
+                    "4": { annual_no_discount:302000, annual_with_discount:302000 },
+                    "6": { annual_no_discount:302000, annual_with_discount:302000 },
+                    "8": { annual_no_discount:302000, annual_with_discount:302000 },
+                    "10":{ annual_no_discount:302000, annual_with_discount:302000 }
+                }
+            },
+            "4": { name:"INTEGRAL DIEZ", cupos:10, cuotasPermitidas:[1,2,4,6,8,10],
+                values: {
+                    "1": { annual_no_discount:288800, annual_with_discount:288800 },
+                    "2": { annual_no_discount:333600, annual_with_discount:333600 },
+                    "4": { annual_no_discount:333600, annual_with_discount:333600 },
+                    "6": { annual_no_discount:333600, annual_with_discount:333600 },
+                    "8": { annual_no_discount:333600, annual_with_discount:333600 },
+                    "10":{ annual_no_discount:333600, annual_with_discount:333600 }
+                }
+            },
+        },
+        mayores: {
+            "1": { annual_no_discount:149600, annual_with_discount:149600 },
+            "2": { annual_no_discount:173100, annual_with_discount:173100 },
+            "3": { annual_no_discount:173100, annual_with_discount:173100 },
+            "4": { annual_no_discount:173100, annual_with_discount:173100 },
+            "6": { annual_no_discount:173100, annual_with_discount:173100 },
+            "8": { annual_no_discount:173100, annual_with_discount:173100 },
+            "10":{ annual_no_discount:173100, annual_with_discount:173100 }
+        },
+        adicionales: {
+            adulto: { label:"Adulto (30-64)", values: {
+                "1": { annual_no_discount:58590 },
+                "2": { annual_no_discount:67800 },
+                "3": { annual_no_discount:67800 },
+                "4": { annual_no_discount:67800 },
+                "6": { annual_no_discount:67800 },
+                "8": { annual_no_discount:67800 },
+                "10":{ annual_no_discount:67800 }
+            }},
+            menor: { label:"Menor (<29)", values: {
+                "1": { annual_no_discount:17040 },
+                "2": { annual_no_discount:19920 },
+                "3": { annual_no_discount:19920 },
+                "4": { annual_no_discount:19920 },
+                "6": { annual_no_discount:19920 },
+                "8": { annual_no_discount:19920 },
+                "10":{ annual_no_discount:19920 }
+            }}
+        },
+        assists: {
+            bici: { label:"Bicicleta", values: {
+                "1": { annual_no_discount:18620, annual_with_discount:17068 },
+                "2": { annual_no_discount:21600, annual_with_discount:19800 },
+                "3": { annual_no_discount:21600, annual_with_discount:19800 },
+                "4": { annual_no_discount:21600, annual_with_discount:19800 },
+                "6": { annual_no_discount:21600, annual_with_discount:19800 },
+                "8": { annual_no_discount:21600, annual_with_discount:19800 },
+                "10":{ annual_no_discount:21600, annual_with_discount:19800 }
+            }},
+            mascota: { label:"Mascota", values: {
+                "1": { annual_no_discount:78000, annual_with_discount:71500 },
+                "2": { annual_no_discount:87000, annual_with_discount:79750 },
+                "3": { annual_no_discount:87000, annual_with_discount:79750 },
+                "4": { annual_no_discount:87000, annual_with_discount:79750 },
+                "6": { annual_no_discount:87000, annual_with_discount:79750 },
+                "8": { annual_no_discount:87000, annual_with_discount:79750 },
+                "10":{ annual_no_discount:87000, annual_with_discount:79750 }
+            }},
+            repatriacion: { label:"Repatriación", values: {
+                "1": { annual_no_discount:13600, annual_with_discount:12467 },
+                "2": { annual_no_discount:16200, annual_with_discount:14850 },
+                "3": { annual_no_discount:16200, annual_with_discount:14850 },
+                "4": { annual_no_discount:16200, annual_with_discount:14850 },
+                "6": { annual_no_discount:16200, annual_with_discount:14850 },
+                "8": { annual_no_discount:16200, annual_with_discount:14850 },
+                "10":{ annual_no_discount:16200, annual_with_discount:14850 }
+            }},
+            salud: { label:"Salud", values: {
+                "1": { annual_no_discount:23700, annual_with_discount:21725 },
+                "2": { annual_no_discount:27900, annual_with_discount:25575 },
+                "3": { annual_no_discount:27900, annual_with_discount:25575 },
+                "4": { annual_no_discount:27900, annual_with_discount:25575 },
+                "6": { annual_no_discount:27900, annual_with_discount:25575 },
+                "8": { annual_no_discount:27900, annual_with_discount:25575 },
+                "10":{ annual_no_discount:27900, annual_with_discount:25575 }
+            }},
+            // **NUEVO CAMPO: SEGURO**
+            seguro: { label:"Seguro", values: {
+                "1": { annual_no_discount:23400, annual_with_discount:23400 },
+                "2": { annual_no_discount:23400, annual_with_discount:23400 },
+                "3": { annual_no_discount:23400, annual_with_discount:23400 },
+                "4": { annual_no_discount:23400, annual_with_discount:23400 },
+                "6": { annual_no_discount:23400, annual_with_discount:23400 },
+                "8": { annual_no_discount:23400, annual_with_discount:23400 },
+                "10":{ annual_no_discount:23400, annual_with_discount:23400 }
+            }}
+        }
+    };
+})();
+
+// El resto del script de UXS_Olivos (rebuildCuotas, calculate, listeners)
+function rebuildCuotas(){
+    const plan = $('planSelect');
+    const cuotasSel = $('cuotasSelect');
+    if(!plan || !cuotasSel) return;
+    const planId = plan.value;
+    cuotasSel.innerHTML = '';
+    const allowed = data.plans[planId].cuotasPermitidas;
+    allowed.forEach(q=>{
+        const opt = document.createElement('option');
+        opt.value = q;
+        opt.text = q;
+        cuotasSel.appendChild(opt);
+    });
+}
+
+function calculate(){
+    const warn = $('warn'); warn.textContent='';
+    const planId = $('planSelect').value;
+    const cuotas = parseInt($('cuotasSelect').value,10);
+    const nMay = Math.max(0, Math.min(10, parseInt($('numMayores').value||0,10)));
+    const nAdult = Math.max(0, Math.min(10, parseInt($('numAdultos').value||0,10)));
+    const nMenor = Math.max(0, Math.min(10, parseInt($('numMenores').value||0,10)));
+    const qty_bici = Math.max(0, parseInt($('as_bici').value||0,10));
+    const qty_masc = Math.max(0, parseInt($('as_mascota').value||0,10));
+    const qty_rep = Math.max(0, parseInt($('as_repat').value||0,10));
+    const qty_sal = Math.max(0, parseInt($('as_salud').value||0,10));
+    const qty_seg = Math.max(0, parseInt($('as_seguro').value||0,10)); // <-- LECTURA DE CANTIDAD
+
+    const plan = data.plans[planId];
+    if(!plan) { warn.textContent='Plan inválido'; return; }
+    if(!plan.cuotasPermitidas.includes(cuotas)){
+        warn.textContent = \`Cuotas no permitidas para \${plan.name}. Permite: \${plan.cuotasPermitidas.join(', ')}\`;
+        return;
+    }
+
+    const planVals = plan.values[String(cuotas)];
+    if(!planVals){ warn.textContent='No hay tarifa definida para esa combinación.'; return; }
+
+    const plan_anual_renov = planVals.annual_no_discount;
+    
+    function getAdicionalValue(type, qty, isMayor = false){
+        if(qty<=0) return {label:'', anual_renov:0, qty:0};
+        let vals;
+        let label;
+
+        if(isMayor){
+            vals = data.mayores[String(cuotas)] || data.mayores["2"];
+            label = \`Adultos mayores (+65 años)\`;
+            const anual_renov = vals.annual_no_discount * qty;
+            return {label, anual_renov, qty:qty};
+        } else if(data.adicionales[type]){
+            vals = data.adicionales[type].values[String(cuotas)] || data.adicionales[type].values["1"];
+            label = \`\${data.adicionales[type].label}\`;
+            const anual_renov = vals.annual_no_discount * qty;
+            return {label, anual_renov, qty:qty};
+        } else if (data.assists[type]){
+            vals = data.assists[type].values[String(cuotas)] || data.assists[type].values["1"];
+            label = \`\${data.assists[type].label}\`;
+            // Se usa la tarifa no descontada para UXS
+            const anual_renov = vals.annual_no_discount * qty; 
+            return {label, anual_renov, qty:qty};
+        }
+        return {label:'', anual_renov:0, qty:0};
+    }
+
+    const as_may = getAdicionalValue('mayores', nMay, true);
+    const as_adult = getAdicionalValue('adulto', nAdult);
+    const as_minor = getAdicionalValue('menor', nMenor);
+    const as_b = getAdicionalValue('bici', qty_bici);
+    const as_m = getAdicionalValue('mascota', qty_masc);
+    const as_r = getAdicionalValue('repatriacion', qty_rep);
+    const as_s = getAdicionalValue('salud', qty_sal);
+    const as_se = getAdicionalValue('seguro', qty_seg); // <-- CÁLCULO DE COSTO
+
+    const adicionales_personas_total_renov = as_may.anual_renov + as_adult.anual_renov + as_minor.anual_renov;
+    const final_plan_cost_renov = plan_anual_renov + adicionales_personas_total_renov;
+    const table_plan_row_renov = plan_anual_renov;
+
+    // <--- SUMA DE ASISTENCIAS CORREGIDA para incluir SEGURO --->
+    const assists_renov_total = as_b.anual_renov + as_m.anual_renov + as_r.anual_renov + as_s.anual_renov + as_se.anual_renov;
+    
+    const total_renov = final_plan_cost_renov + assists_renov_total;
+    const cuota_renov = total_renov / (cuotas>0?cuotas:1);
+
+    const tbody = $('resultBody'); tbody.innerHTML='';
+    
+    function addRow(label, valRenov, cuota){
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td'); td1.textContent = label;
+        const td2 = document.createElement('td'); td2.className='right'; td2.textContent = formatMoney(valRenov);
+        const td3 = document.createElement('td'); td3.className='right'; td3.textContent = cuota!==undefined?formatMoney(cuota):'-';
+        tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+        tbody.appendChild(tr);
+    }
+
+    $('resultTable').querySelector('thead tr').innerHTML = '<th>Concepto</th><th class="right">Anual (Renovación)</th><th class="right">Cuota</th>';
+    const planLabel = \`\${data.plans[planId].name} (Plan Base)\`;
+    addRow(planLabel, table_plan_row_renov, table_plan_row_renov / (cuotas>0?cuotas:1));
+
+    const adicionales_rows = [];
+    if(nMay>0) adicionales_rows.push(as_may);
+    if(nAdult>0) adicionales_rows.push(as_adult);
+    if(nMenor>0) adicionales_rows.push(as_minor);
+
+    adicionales_rows.forEach(a => {
+        const detalleCuota = a.anual_renov / (cuotas>0?cuotas:1);
+        addRow(\`Adicional \${a.label} x \${a.qty}\`, a.anual_renov, detalleCuota); 
+    });
+
+    if(qty_bici>0) addRow(\`Asistencia \${as_b.label} x \${qty_bici}\`, as_b.anual_renov, as_b.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_masc>0) addRow(\`Asistencia \${as_m.label} x \${qty_masc}\`, as_m.anual_renov, as_m.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_rep>0) addRow(\`Asistencia \${as_r.label} x \${qty_rep}\`, as_r.anual_renov, as_r.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_sal>0) addRow(\`Asistencia \${as_s.label} x \${qty_sal}\`, as_s.anual_renov, as_s.anual_renov/(cuotas>0?cuotas:1));
+    if(qty_seg>0) addRow(\`Asistencia \${as_se.label} x \${qty_seg}\`, as_se.anual_renov, as_se.anual_renov/(cuotas>0?cuotas:1)); // <-- FILA DEL SEGURO
+
+    const foot = $('resultFoot'); foot.innerHTML = '';
+    const trT = document.createElement('tr');
+    trT.innerHTML = \`<th>Total de Renovación</th><th class="right">\${formatMoney(total_renov)}</th><th class="right">\${formatMoney(cuota_renov)}</th>\`;
+    foot.appendChild(trT);
+
+    $('textsArea').innerHTML = '';
+    const divPlan = document.createElement('div'); divPlan.id = 'textPlan'; $('textsArea').appendChild(divPlan);
+    const divAdic = document.createElement('div'); divAdic.id = 'textAdicionales'; $('textsArea').appendChild(divAdic);
+    const divAsist = document.createElement('div'); divAsist.id = 'textAsistencias'; $('textsArea').appendChild(divAsist);
+    const divTotal = document.createElement('div'); divTotal.id = 'textTotal'; $('textsArea').appendChild(divTotal);
+
+    $('textPlan').textContent = \`Estimado Cliente, el plan UXS \${data.plans[planId].name} en \${cuotas} cuota(s) tiene un valor total anual de \${formatMoney(total_renov)} sin tiempo de carencia.\`;
+    
+    let adic_text = [];
+    if (nMay > 0) adic_text.push(\`\${nMay} adulto(s) mayor(es) (+65 años)\`);
+    if (nAdult > 0) adic_text.push(\`\${nAdult} adulto(s) (30-64 años)\`);
+    if (nMenor > 0) adic_text.push(\`\${nMenor} menor(es) (<29 años)\`);
+
+    if(adicionales_personas_total_renov > 0){
+        $('textAdicionales').textContent = \`Su plan incluye \${adic_text.join(', ')} adicionales, con un costo total anual de \${formatMoney(adicionales_personas_total_renov)}.\`;
+    } else {
+        $('textAdicionales').textContent = 'No se incluyeron adicionales de persona en esta cotización.';
+    }
+
+    let assist_text = [];
+    if (qty_bici > 0) assist_text.push(\`\${qty_bici} Bicicleta\`);
+    if (qty_masc > 0) assist_text.push(\`\${qty_masc} Mascota\`);
+    if (qty_rep > 0) assist_text.push(\`\${qty_rep} Repatriación\`);
+    if (qty_sal > 0) assist_text.push(\`\${qty_sal} Salud\`);
+    if (qty_seg > 0) assist_text.push(\`\${qty_seg} Seguro\`); // <-- SEGURO EN EL RESUMEN DE TEXTO
+
+    if(assists_renov_total > 0) {
+        $('textAsistencias').textContent = \`Las asistencias \${assist_text.join(', ')} suman un costo anual de \${formatMoney(assists_renov_total)}.\`;
+    } else {
+        $('textAsistencias').textContent = 'No se incluyeron asistencias opcionales.';
+    }
+
+    $('textTotal').textContent = \`El total a pagar por cuota, incluyendo el plan, adicionales y asistencias, será de \${formatMoney(cuota_renov)} por cuota (\${cuotas} cuotas).\`;
+
+    window._lastSummary = {
+        plan: data.plans[planId].name,
+        cuotas,
+        total_renov, cuota_renov,
+        nMay, nAdult, nMenor,
+        adicionales_personas_total_renov,
+        assists_renov_total,
+        assists:{bici:qty_bici,mascota:qty_masc,repat:qty_rep,salud:qty_sal,seguro:qty_seg} // <-- SEGURO EN EL OBJETO FINAL
+    };
+}
+
+function initUI(){
+    const planSel = $('planSelect');
+    if (!planSel) return;
+    for(const key of Object.keys(data.plans)){
+        const p = data.plans[key];
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.text = \`\${p.name} (\${p.cupos} cupo\${p.cupos>1?'s':''})\`;
+        planSel.appendChild(opt);
+    }
+    planSel.addEventListener('change', rebuildCuotas);
+    rebuildCuotas();
+
+    $('btnCalc').addEventListener('click', calculate);
+    $('btnReset').addEventListener('click', ()=>{
+        $('planSelect').value='4'; 
+        rebuildCuotas();
+        $('cuotasSelect').value='10';
+        $('numMayores').value='0'; 
+        $('numAdultos').value='0'; 
+        $('numMenores').value='0';
+        $('as_bici').value='0'; $('as_mascota').value='0'; $('as_repat').value='0'; $('as_salud').value='0'; $('as_seguro').value='0'; // <-- RESET SEGURO
+        $('resultBody').innerHTML=''; $('resultFoot').innerHTML=''; 
+        const textsArea = $('textsArea'); textsArea.innerHTML = ''; 
+        $('warn').textContent='';
+    });
+    $('btnCopy').addEventListener('click', ()=>{
+        const s = window._lastSummary;
+        if(!s){ alert('No hay resumen para copiar. Haz un cálculo primero.'); return; }
+        let txt = \`Resumen cotización (RENOVACIÓN):\\nPlan: \${s.plan}\\nCuotas: \${s.cuotas}\\nTotal anual: \${formatMoney(s.total_renov)}\\nCuota por mes: \${formatMoney(s.cuota_renov)}\\n\`;
+        
+        let adic_copy_text = [];
+        if (s.nMay > 0) adic_copy_text.push(\`\${s.nMay} Mayor (+70)\`);
+        if (s.nAdult > 0) adic_copy_text.push(\`\${s.nAdult} Adulto (18-69)\`);
+        if (s.nMenor > 0) adic_copy_text.push(\`\${s.nMenor} Menor (<18)\`);
+    
+        if(s.adicionales_personas_total_renov > 0) {
+            txt += \`Adicionales de persona: \${adic_copy_text.join(', ')}. Costo anual: \${formatMoney(s.adicionales_personas_total_renov)}\\n\`;
+        }
+        
+        let assist_copy_text = [];
+        const a = s.assists;
+        if (a.bici > 0) assist_copy_text.push(\`Bicicleta x\${a.bici}\`);
+        if (a.mascota > 0) assist_copy_text.push(\`Mascota x\${a.mascota}\`);
+        if (a.repat > 0) assist_copy_text.push(\`Repatriación x\${a.repat}\`);
+        if (a.salud > 0) assist_copy_text.push(\`Salud x\${a.salud}\`);
+        if (a.seguro > 0) assist_copy_text.push(\`Seguro x\${a.seguro}\`); // <-- COPIAR SEGURO
+    
+        if(s.assists_renov_total > 0) {
+            txt += \`Asistencias Opcionales: \${assist_copy_text.join(', ')}. Costo anual: \${formatMoney(s.assists_renov_total)}\\n\`;
+        }
+        
+        navigator.clipboard && navigator.clipboard.writeText(txt).then(()=> alert('Resumen copiado'));
+    });
+    calculate(); // Ejecutar cálculo inicial para mostrar datos por defecto
+}
+initUI();
+`;
+function loadUXS_Olivos() {
+    loadLiquidador(UXS_Olivos_HTML, 'liquidador-uxs-olivos', UXS_Olivos_Script, 'Liquidador UXS — Los Olivos');
+}
+
+    </script>
+</body>
+</html>
